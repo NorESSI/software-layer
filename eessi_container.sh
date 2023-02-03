@@ -488,7 +488,12 @@ if [ ! -z ${EESSI_SOFTWARE_SUBDIR_OVERRIDE} ]; then
 fi
 
 # if INFO is set to 1 (arg --info), add argument '-q'
-RUN_QUIET=${INFO:--q}
+if [[ -z ${INFO} ]]; then
+    RUN_QUIET='-q'
+else
+    RUN_QUIET=''
+fi
+
 echo "Launching container with command (next line):"
 echo "singularity ${RUN_QUIET} ${MODE} ${EESSI_FUSE_MOUNTS[@]} ${CONTAINER} $@"
 # TODO for now we run singularity with '-q' (quiet), later adjust this to the log level
