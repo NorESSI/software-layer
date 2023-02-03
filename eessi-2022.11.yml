@@ -2,7 +2,7 @@ software:
   OpenMPI:
     toolchains:
       GCC-9.3.0:
-        version: ['4.0.3']
+        versions: ['4.0.3']
   CaDiCaL:
     toolchains:
       GCC-9.3.0:
