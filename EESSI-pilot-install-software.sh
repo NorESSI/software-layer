@@ -218,6 +218,10 @@ fi
 
 echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALLPATH}..."
 
+################################################################################
+# COMMENT OUT EB install sections below to not hit GH rate limit because of
+# *from-pr arguments
+################################################################################
 ##### install Java with fixed custom easyblock that uses patchelf to ensure right glibc is picked up,
 ##### see https://github.com/EESSI/software-layer/issues/123
 ##### and https://github.com/easybuilders/easybuild-easyblocks/pull/2557
@@ -441,7 +445,10 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 ####$EB SciPy-bundle-2021.05-foss-2021a.eb --robot
 ####check_exit_code $? "${ok_msg}" "${fail_msg}"
 
+################################################################################
 ### add packages here
+################################################################################
+## example block showing a few debugging means
 echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
 ok_msg="CaDiCaL installed. Nice!"
 fail_msg="Installation of CaDiCaL failed, that's unexpected..."
