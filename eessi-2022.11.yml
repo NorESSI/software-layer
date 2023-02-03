@@ -1,0 +1,5 @@
+software:
+  CaDiCaL:
+    toolchains:
+      GCC-9.3.0:
+        versions: ['1.3.0']
