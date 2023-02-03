@@ -252,7 +252,6 @@ if [[ ! -z ${RESUME} && -d ${RESUME} ]]; then
   #   skip creating a new tmp directory, just set environment variables
   echo "Resuming from previous run using temporary storage at ${RESUME}"
   EESSI_HOST_STORAGE=${RESUME}
-  echo "RESUME_FROM_DIR ${EESSI_HOST_STORAGE}"
 else
   # we need a tmp location (and possibly init it with ${RESUME} if it was not
   #   a directory
@@ -284,6 +283,7 @@ else
   EESSI_HOST_STORAGE=$(mktemp -d --tmpdir eessi.XXXXXXXXXX)
   echo "Using ${EESSI_HOST_STORAGE} as tmp storage (add '--resume ${EESSI_HOST_STORAGE}' to resume where this session ended)."
 fi
+echo "RESUME_FROM_DIR ${EESSI_HOST_STORAGE}"
 
 # if ${RESUME} is a file (assume a tgz), unpack it into ${EESSI_HOST_STORAGE}
 if [[ ! -z ${RESUME} && -f ${RESUME} ]]; then

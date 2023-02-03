@@ -137,6 +137,7 @@ else
     echo_green ">> MODULEPATH set up: ${MODULEPATH}"
 fi
 
+echo "EESSI_CVMFS_REPO=${EESSI_CVMFS_REPO}"
 case ${EESSI_CVMFS_REPO} in
     /cvmfs/pilot.eessi-hpc.org*)
         REQ_EB_VERSION='4.5.0'
@@ -147,6 +148,8 @@ case ${EESSI_CVMFS_REPO} in
     *)
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
 esac
+echo "REQ_EB_VERSION=${REQ_EB_VERSION}"
+module avail 2>&1 | grep -i easybuild
 
 echo ">> Checking for EasyBuild module..."
 ml_av_easybuild_out=$TMPDIR/ml_av_easybuild.out
