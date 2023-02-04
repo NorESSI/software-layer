@@ -459,6 +459,15 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #cat $($EB --last-log)
 #check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
 
+# install GCC for foss/2022a
+export GCC_EC="GCC-11.3.0.eb"
+echo ">> Starting slow with ${GCC_EC} using '--from-pr 14453' ..."
+ok_msg="${GCC_EC} installed, yippy! Off to a good start..."
+fail_msg="Installation of ${GCC_EC} failed!"
+# pull in easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14453,
+# which includes patch to fix build of GCC 11.3.0 when recent kernel headers are in place
+$EB --robot --from-pr 14453 ${GCC_EC}
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
