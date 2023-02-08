@@ -1,0 +1,33 @@
+easyblock = 'MakeCp'
+
+name = 'AdmixTools'
+version = '7.0.1'
+
+homepage = 'https://github.com/DReichLab/AdmixTools'
+description = """ADMIXTOOLS is a software package that supports formal tests of 
+ whether admixture occurred, and makes it possible to infer admixture proportions and dates"""
+
+toolchain = {'name': 'GCC', 'version': '9.3.0'}
+
+source_urls = ['https://github.com/DReichLab/AdmixTools/archive/']
+sources = ['v%(version)s.tar.gz']
+checksums = ['182dd6f55109e9a1569b47843b0d1aa89fe4cf4a05f9292519b9811faea67a20']
+
+dependencies = [
+    ('OpenBLAS', '0.3.9'),
+    ('GSL', '2.6'),
+]
+
+start_dir = 'src'
+
+buildopts = ' && make install'
+
+files_to_copy = ['bin']
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['']
+}
+
+moduleclass = 'bio'
+
