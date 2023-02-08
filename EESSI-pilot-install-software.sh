@@ -458,8 +458,13 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --last-log
 #cat $($EB --last-log)
 #check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
-
-
+## install AdmixTools-7.0.1-GCC-9.3.0.eb 
+export AdmixTools="AdmixTools-7.0.1-GCC-9.3.0.eb"
+echo ">> Installing ${AdmixTools}..."
+ok_msg="${AdmixTools} installed, let's solve some problems!"
+fail_msg="Installation of ${AdmixTools} failed, that's a pity..."
+$EB ${AdmixTools} --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
