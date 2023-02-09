@@ -1,4 +1,4 @@
-EasyBlock = 'ConfigureMake'
+easyblock = 'ConfigureMake'
 version = '1.10'
 
 homepage = 'https://www.gnu.org/software/gzip/'
