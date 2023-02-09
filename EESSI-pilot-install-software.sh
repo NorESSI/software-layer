@@ -450,14 +450,14 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 ### add packages here
 ################################################################################
 ## example block showing a few debugging means
-#echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
-#ok_msg="CaDiCaL installed. Nice!"
-#fail_msg="Installation of CaDiCaL failed, that's unexpected..."
-#$EB CaDiCaL-1.3.0-GCC-9.3.0.eb --robot --disable-cleanup-tmpdir
-#exit_code=$?
-#$EB --last-log
-#cat $($EB --last-log)
-#check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
+echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
+ok_msg="CaDiCaL installed. Nice!"
+fail_msg="Installation of CaDiCaL failed, that's unexpected..."
+$EB CaDiCaL-1.3.0-GCC-9.3.0.eb --robot --disable-cleanup-tmpdir
+exit_code=$?
+$EB --last-log
+cat $($EB --last-log)
+check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
 
 
 echo ">> Creating/updating Lmod cache..."
