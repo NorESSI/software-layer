@@ -143,7 +143,7 @@ case ${EESSI_CVMFS_REPO} in
         REQ_EB_VERSION='4.5.0'
         ;;
     /cvmfs/pilot.nessi.no*)
-        REQ_EB_VERSION='4.6.2'
+        REQ_EB_VERSION='4.7.0'
         ;;
     *)
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
@@ -449,16 +449,6 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 ################################################################################
 ### add packages here
 ################################################################################
-# example block showing a few debugging means
-echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
-ok_msg="CaDiCaL installed. Nice!"
-fail_msg="Installation of CaDiCaL failed, that's unexpected..."
-$EB CaDiCaL-1.3.0-GCC-9.3.0.eb --robot --disable-cleanup-tmpdir
-exit_code=$?
-$EB --last-log
-cat $($EB --last-log)
-check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
-
 ## add latest EasyBuild to stack
 echo ">> Adding latest EasyBuild to stack..."
 ok_msg="Latest EasyBuild got installed ... great!"
@@ -470,6 +460,16 @@ else
 fi
 exit_code=$?
 check_exit_code ${exit_code} "${ok_msg}" "${fail_msg}"
+
+# example block showing a few debugging means
+echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
+ok_msg="CaDiCaL installed. Nice!"
+fail_msg="Installation of CaDiCaL failed, that's unexpected..."
+$EB CaDiCaL-1.3.0-GCC-9.3.0.eb --robot --disable-cleanup-tmpdir
+exit_code=$?
+$EB --last-log
+cat $($EB --last-log)
+check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
 
 
 echo ">> Creating/updating Lmod cache..."
