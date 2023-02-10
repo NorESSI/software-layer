@@ -1,5 +1,11 @@
-software:
-  OpenMPI:
-    toolchains:
-      GCC-9.3.0:
-        versions: ['4.0.3']
+# old easystack format (pre EasyBuild v4.7.0)
+#software:
+#  OpenMPI:
+#    toolchains:
+#      GCC-9.3.0:
+#        versions: ['4.0.3']
+
+# new easystack format (from EasyBuild v4.7.0)
+easyconfigs:
+  - OpenMPI-4.0.3-GCC-9.3.0.eb
+  - CaDiCaL-1.3.0-GCC-9.3.0.eb
