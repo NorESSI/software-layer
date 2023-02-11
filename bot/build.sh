@@ -74,8 +74,8 @@ echo "LOAD_MODULES='${LOAD_MODULES}'"
 
 # singularity/apptainer settings: CONTAINER, HOME, TMPDIR, BIND
 CONTAINER=$(${YQ} '.repository.container // ""' ${JOB_CFG_FILE})
-export SINGULARITY_HOME="$(pwd):/eessi_bot_job"
-export SINGULARITY_TMPDIR="$(pwd)/singularity_tmpdir"
+export SINGULARITY_HOME="${PWD}:/eessi_bot_job"
+export SINGULARITY_TMPDIR="${PWD}/singularity_tmpdir"
 mkdir -p ${SINGULARITY_TMPDIR}
 
 # load modules if LOAD_MODULES is not empty
