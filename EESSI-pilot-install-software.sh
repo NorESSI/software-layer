@@ -422,8 +422,8 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 ##### use enhanced Perl easyblock from https://github.com/easybuilders/easybuild-easyblocks/pull/2640
 ##### to avoid trouble when using long installation prefix (for example with EESSI pilot 2021.12 on skylake_avx512...)
 ####$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
-##### use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
-##### from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
+#### use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
+#### from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
 ####$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 ##### use Rust easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14584
 ##### that includes patch to fix bootstrap problem when using alternate sysroot
@@ -449,6 +449,15 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 ################################################################################
 ### add packages here
 ################################################################################
+export pkg="GCCcore-10.2.0.eb"
+echo ">> Installing ${pkg}..."
+ok_msg="${pkg} installed, let's solve some problems!"
+fail_msg="Installation of ${pkg} failed, that's a pity..."
+$EB ${pkg} --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
+
+
+
 ## example block showing a few debugging means
 #echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
 #ok_msg="CaDiCaL installed. Nice!"
@@ -458,18 +467,6 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --last-log
 #cat $($EB --last-log)
 #check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
-
-## add latest EasyBuild to stack
-echo ">> Adding latest EasyBuild to stack..."
-ok_msg="Latest EasyBuild got installed ... great!"
-fail_msg="Installation of latest EasyBuild failed! Disappointed."
-if [[ ${EESSI_CVMFS_REPO} == /cvmfs/pilot.eessi-hpc.org ]]; then
-    $EB --from-pr 14545 --include-easyblocks-from-pr 2805 --robot --install-latest-eb-release
-else
-    $EB --robot --install-latest-eb-release
-fi
-exit_code=$?
-check_exit_code ${exit_code} "${ok_msg}" "${fail_msg}"
 
 
 echo ">> Creating/updating Lmod cache..."
