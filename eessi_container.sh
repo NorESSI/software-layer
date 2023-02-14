@@ -354,6 +354,9 @@ else
   #    standard EESSI repositories)
   cfg_load ${EESSI_REPOS_CFG_FILE}
 
+  # copy repos.cfg to job directory --> makes it easier to inspect the job
+  cp ${EESSI_REPOS_CFG_FILE} ${EESSI_TMPDIR}/repos_cfg/.
+
   # cfg file should include: repo_name, repo_version, config_bundle,
   #   map { local_filepath -> container_filepath }
   #

@@ -143,7 +143,7 @@ case ${EESSI_CVMFS_REPO} in
         REQ_EB_VERSION='4.5.0'
         ;;
     /cvmfs/pilot.nessi.no*)
-        REQ_EB_VERSION='4.6.2'
+        REQ_EB_VERSION='4.7.0'
         ;;
     *)
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
@@ -458,6 +458,18 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --last-log
 #cat $($EB --last-log)
 #check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
+
+## add latest EasyBuild to stack
+echo ">> Adding latest EasyBuild to stack..."
+ok_msg="Latest EasyBuild got installed ... great!"
+fail_msg="Installation of latest EasyBuild failed! Disappointed."
+if [[ ${EESSI_CVMFS_REPO} == /cvmfs/pilot.eessi-hpc.org ]]; then
+    $EB --from-pr 14545 --include-easyblocks-from-pr 2805 --robot --install-latest-eb-release
+else
+    $EB --robot --install-latest-eb-release
+fi
+exit_code=$?
+check_exit_code ${exit_code} "${ok_msg}" "${fail_msg}"
 
 # install GCC for foss/2022a
 export GCC_EC="GCC-11.3.0.eb"

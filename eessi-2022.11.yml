@@ -1,5 +1,2 @@
-software:
-  OpenMPI:
-    toolchains:
-      GCC-9.3.0:
-        versions: ['4.0.3']
+easyconfigs:
+  - EasyBuild-4.7.0.eb
