@@ -421,10 +421,10 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --from-pr 14454 GCCcore-10.3.0.eb --robot
 # use enhanced Perl easyblock from https://github.com/easybuilders/easybuild-easyblocks/pull/2640
 # to avoid trouble when using long installation prefix (for example with EESSI pilot 2021.12 on skylake_avx512...)
-#$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
+$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
 #use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
 #from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
-#$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
+$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 # use Rust easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14584
 # that includes patch to fix bootstrap problem when using alternate sysroot
 #$EB --from-pr 14584 Rust-1.52.1-GCCcore-10.3.0.eb --robot
@@ -449,7 +449,6 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #####################
 ### add packages here
 #####################
-$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot
 # example block showing a few debugging means
 #echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
 #ok_msg="CaDiCaL installed. Nice!"
