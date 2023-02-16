@@ -424,7 +424,7 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
 #use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
 #from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
-#$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
+$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 # use Rust easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14584
 # that includes patch to fix bootstrap problem when using alternate sysroot
 #$EB --from-pr 14584 Rust-1.52.1-GCCcore-10.3.0.eb --robot

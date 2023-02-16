@@ -1,3 +1,4 @@
 easyconfigs:
   - EasyBuild-4.7.0.eb
+  - CMake-3.20.1-GCCcore-10.3.0.eb
   - Ruby-3.0.1-GCCcore-10.3.0.eb
