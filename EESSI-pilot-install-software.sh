@@ -451,6 +451,7 @@ $EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 #####################
 $EB Python-3.9.5-GCCcore-10.3.0.eb --robot
 $EB IPython-7.25.0-GCCcore-10.3.0.eb --robot
+$EB OpenMPI-4.1.1-GCC-10.3.0.eb  --robot 
 # example block showing a few debugging means
 #echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
 #ok_msg="CaDiCaL installed. Nice!"
