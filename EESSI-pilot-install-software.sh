@@ -439,7 +439,7 @@ $EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 #if [ "${EESSI_SOFTWARE_SUBDIR}" = "ppc64le/generic" ]; then
 #    $EB FlexiBLAS-3.0.4-GCC-10.3.0.eb --ignore-test-failure
 #else
-#    $EB FlexiBLAS-3.0.4-GCC-10.3.0.eb
+    $EB FlexiBLAS-3.0.4-GCC-10.3.0.eb
 #fi
 #
 #$EB SciPy-bundle-2021.05-foss-2021a.eb --robot
