@@ -323,11 +323,11 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #    check_exit_code $? "${ok_msg}" "${fail_msg}"
 #fi
 
-#echo ">> Installing R 4.0.0 (better be patient)..."
-#ok_msg="R installed, wow!"
-#fail_msg="Installation of R failed, so sad..."
-#$EB R-4.0.0-foss-2020a.eb --robot --parallel-extensions-install --experimental
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing R 4.0.0 (better be patient)..."
+ok_msg="R installed, wow!"
+fail_msg="Installation of R failed, so sad..."
+$EB R-4.0.0-foss-2020a.eb --robot --parallel-extensions-install --experimental
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing Bioconductor 3.11 bundle..."
 #ok_msg="Bioconductor installed, enjoy!"
