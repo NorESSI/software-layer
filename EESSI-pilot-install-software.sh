@@ -344,7 +344,7 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #echo ">> Installing Horovod 0.21.3..."
 #ok_msg="Horovod installed! Go do some parallel training!"
 #fail_msg="Horovod installation failed. There comes the headache..."
-#$EB Horovod-0.21.3-foss-2020a-TensorFlow-2.3.1-Python-3.8.2.eb --robot
+$EB Horovod-0.21.3-foss-2020a-TensorFlow-2.3.1-Python-3.8.2.eb --robot
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #if [ ! "${EESSI_CPU_FAMILY}" = "ppc64le" ]; then
