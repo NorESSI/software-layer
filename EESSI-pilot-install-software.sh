@@ -377,7 +377,7 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #echo ">> Installing IPython 7.15.0..."
 #ok_msg="IPython installed, launch your Jupyter Notebooks!"
 #fail_msg="Installation of IPython failed, that's unexpected..."
-#$EB IPython-7.15.0-foss-2020a-Python-3.8.2.eb -r
+$EB IPython-7.15.0-foss-2020a-Python-3.8.2.eb -r
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing WRF 3.9.1.1..."
