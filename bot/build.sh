@@ -141,6 +141,11 @@ REPOSITORY_OPT=
 if [[ ! -z ${REPOSITORY} ]]; then
     REPOSITORY_OPT="--repository ${REPOSITORY}"
 fi
+GENERIC_OPT=
+if [[ ${EESSI_SOFTWARE_SUBDIR_OVERRIDE} =~ ".*/generic" ]]; then
+    GENERIC_OPT="--generic"
+fi
+
 mkdir -p previous_tmp/{build_step,tarball_step}
 build_outerr=$(mktemp build.outerr.XXXX)
 echo "Executing command to build software:"
@@ -153,7 +158,7 @@ echo "                     --mode run"
 echo "                     ${REPOSITORY_OPT}"
 echo "                     --save ${PWD}/previous_tmp/build_step"
 echo "                     --storage ${STORAGE}"
-echo "                     ./install_software_layer.sh \"$@\" 2>&1 | tee -a ${build_outerr}"
+echo "                     ./install_software_layer.sh ${GENERIC_OPT} \"$@\" 2>&1 | tee -a ${build_outerr}"
 # set EESSI_REPOS_CFG_DIR_OVERRIDE to ./cfg
 export EESSI_REPOS_CFG_DIR_OVERRIDE=${PWD}/cfg
 ./eessi_container.sh --access rw \
@@ -165,7 +170,7 @@ export EESSI_REPOS_CFG_DIR_OVERRIDE=${PWD}/cfg
                      ${REPOSITORY_OPT} \
                      --save ${PWD}/previous_tmp/build_step \
                      --storage ${STORAGE} \
-                     ./install_software_layer.sh "$@" 2>&1 | tee -a ${build_outerr}
+                     ./install_software_layer.sh ${GENERIC_OPT} "$@" 2>&1 | tee -a ${build_outerr}
 
 # determine temporary directory to resume from
 BUILD_TMPDIR=$(grep 'RESUME_FROM_DIR' ${build_outerr} | sed -e "s/^RESUME_FROM_DIR //")
