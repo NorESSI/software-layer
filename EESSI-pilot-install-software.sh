@@ -483,6 +483,7 @@ if [ ! -f $LMOD_RC ]; then
     check_exit_code $? "$LMOD_RC created" "Failed to create $LMOD_RC"
 fi
 
+echo "Updating Lmod cache"
 $TOPDIR/update_lmod_cache.sh ${EPREFIX} ${EASYBUILD_INSTALLPATH}
 
 $TOPDIR/check_missing_installations.sh
