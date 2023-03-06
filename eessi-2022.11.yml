@@ -4,4 +4,5 @@ easyconfigs:
   - Python-3.9.5-GCCcore-10.3.0.eb
   - OpenMPI-4.1.1-GCC-10.3.0.eb
   - ImageMagick-7.0.11-14-GCCcore-10.3.0.eb
+  - Nextflow-22.10.1.eb
   - Horovod-0.21.3-foss-2020a-TensorFlow-2.3.1-Python-3.8.2.eb
