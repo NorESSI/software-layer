@@ -392,11 +392,12 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --from-pr 14821 X11-20210518-GCCcore-10.3.0.eb -r && $EB --from-pr 16011 R-4.1.0-foss-2021a.eb --robot --parallel-extensions-install --experimental
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Nextflow 22.10.1..."
-#ok_msg="Nextflow installed, the work must flow..."
-#fail_msg="Installation of Nextflow failed, that's unexpected..."
-#$EB -r --from-pr 16531 Nextflow-22.10.1.eb
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Nextflow 22.10.1..."
+ok_msg="Nextflow installed, the work must flow..."
+fail_msg="Installation of Nextflow failed, that's unexpected..."
+# Comment from Axel: PR 16531 was merged so --from-pr not needed anymore (but was used in this build)
+$EB -r --from-pr 16531 Nextflow-22.10.1.eb
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing OSU-Micro-Benchmarks/5.7.1-gompi-2021a..."
 #ok_msg="OSU-Micro-Benchmarks installed, yihaa!"
@@ -413,9 +414,9 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #LMOD_IGNORE_CACHE=1 module swap EasyBuild/4.5.1
 #check_exit_code $? "Swapped to EasyBuild/4.5.1" "Couldn't swap to EasyBuild/4.5.1"
 
-#echo ">> Installing SciPy-bundle with foss/2021a..."
-#ok_msg="SciPy-bundle with foss/2021a installed, welcome to the modern age"
-#fail_msg="Installation of SciPy-bundle with foss/2021a failed, back to the stone age..."
+echo ">> Installing SciPy-bundle with foss/2021a..."
+ok_msg="SciPy-bundle with foss/2021a installed, welcome to the modern age"
+fail_msg="Installation of SciPy-bundle with foss/2021a failed, back to the stone age..."
 # use GCCcore easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14454
 # which includes patch to fix installation with recent Linux kernel headers
 #$EB --from-pr 14454 GCCcore-10.3.0.eb --robot
@@ -443,7 +444,7 @@ $EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 #fi
 #
 $EB SciPy-bundle-2021.05-foss-2021a.eb --robot
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 
 #####################
