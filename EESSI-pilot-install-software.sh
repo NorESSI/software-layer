@@ -392,11 +392,12 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --from-pr 14821 X11-20210518-GCCcore-10.3.0.eb -r && $EB --from-pr 16011 R-4.1.0-foss-2021a.eb --robot --parallel-extensions-install --experimental
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Nextflow 22.10.1..."
-#ok_msg="Nextflow installed, the work must flow..."
-#fail_msg="Installation of Nextflow failed, that's unexpected..."
-#$EB -r --from-pr 16531 Nextflow-22.10.1.eb
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Nextflow 22.10.1..."
+ok_msg="Nextflow installed, the work must flow..."
+fail_msg="Installation of Nextflow failed, that's unexpected..."
+# Comment from Axel: PR 16531 was merged so --from-pr not needed anymore (but was used in this build)
+$EB -r --from-pr 16531 Nextflow-22.10.1.eb
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing OSU-Micro-Benchmarks/5.7.1-gompi-2021a..."
 #ok_msg="OSU-Micro-Benchmarks installed, yihaa!"
@@ -436,11 +437,11 @@ $EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 # see also https://github.com/easybuilders/easybuild-easyconfigs/pull/12476;
 # using -fstack-protector-strong -fstack-clash-protection should fix that,
 # but it doesn't for some reason when building for ppc64le/generic...
-#if [ "${EESSI_SOFTWARE_SUBDIR}" = "ppc64le/generic" ]; then
-#    $EB FlexiBLAS-3.0.4-GCC-10.3.0.eb --ignore-test-failure
-#else
+if [ "${EESSI_SOFTWARE_SUBDIR}" = "ppc64le/generic" ]; then
+    $EB FlexiBLAS-3.0.4-GCC-10.3.0.eb --ignore-test-failure
+else
     $EB FlexiBLAS-3.0.4-GCC-10.3.0.eb --robot
-#fi
+fi
 #
 #$EB SciPy-bundle-2021.05-foss-2021a.eb --robot
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
