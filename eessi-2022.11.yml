@@ -4,3 +4,4 @@ easyconfigs:
   - Python-3.9.5-GCCcore-10.3.0.eb
   - OpenMPI-4.1.1-GCC-10.3.0.eb
   - ImageMagick-7.0.11-14-GCCcore-10.3.0.eb
+  - Nextflow-22.10.1.eb
