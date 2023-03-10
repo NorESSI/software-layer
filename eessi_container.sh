@@ -114,6 +114,8 @@ SAVE=
 HTTP_PROXY=${http_proxy:-}
 HTTPS_PROXY=${https_proxy:-}
 
+COMMAND_SEPARATOR=0
+
 POSITIONAL_ARGS=()
 
 while [[ $# -gt 0 ]]; do
@@ -172,8 +174,17 @@ while [[ $# -gt 0 ]]; do
       export https_proxy=${HTTPS_PROXY}
       shift 2
       ;;
+    --)
+      COMMAND_SEPARATOR=1
+      shift
+      ;;
     -*|--*)
-      fatal_error "Unknown option: $1" "${CMDLINE_ARG_UNKNOWN_EXITCODE}"
+      if [[ ${COMMAND_SEPARATOR} -eq 0 ]]; then
+        fatal_error "Unknown option: $1" "${CMDLINE_ARG_UNKNOWN_EXITCODE}"
+      else
+        POSITIONAL_ARGS+=("$1") # save positional arg
+        shift
+      fi
       ;;
     *)  # No more options
       POSITIONAL_ARGS+=("$1") # save positional arg
