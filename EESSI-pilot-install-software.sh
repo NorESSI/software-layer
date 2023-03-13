@@ -50,7 +50,7 @@ set -- "${POSITIONAL_ARGS[@]}"
 
 TOPDIR=$(dirname $(realpath $0))
 
-source $TOPDIR/utils.sh
+source $TOPDIR/scripts/utils.sh
 
 # honor $TMPDIR if it is already defined, use /tmp otherwise
 if [ -z $TMPDIR ]; then
@@ -281,11 +281,11 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB Perl-5.30.2-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2640
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Qt5..."
-#ok_msg="Qt5 installed, phieuw, that was a big one!"
-#fail_msg="Installation of Qt5 failed, that's frustrating..."
-#$EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Qt5..."
+ok_msg="Qt5 installed, phieuw, that was a big one!"
+fail_msg="Installation of Qt5 failed, that's frustrating..."
+$EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot --disable-cleanup-tmpdir
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # skip test step when installing SciPy-bundle on aarch64,
 # to dance around problem with broken numpy tests;
@@ -368,11 +368,11 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB OSU-Micro-Benchmarks-5.6.3-gompi-2020a.eb -r
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Spark 3.1.1..."
-#ok_msg="Spark installed, set off the fireworks!"
-#fail_msg="Installation of Spark failed, no fireworks this time..."
-#$EB Spark-3.1.1-foss-2020a-Python-3.8.2.eb -r
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Spark 3.1.1..."
+ok_msg="Spark installed, set off the fireworks!"
+fail_msg="Installation of Spark failed, no fireworks this time..."
+$EB Spark-3.1.1-foss-2020a-Python-3.8.2.eb -r
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing IPython 7.15.0..."
 #ok_msg="IPython installed, launch your Jupyter Notebooks!"
