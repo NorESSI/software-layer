@@ -290,11 +290,11 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB Perl-5.30.2-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2640
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-echo ">> Installing Qt5..."
-ok_msg="Qt5 installed, phieuw, that was a big one!"
-fail_msg="Installation of Qt5 failed, that's frustrating..."
-$EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot --disable-cleanup-tmpdir
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+#echo ">> Installing Qt5..."
+#ok_msg="Qt5 installed, phieuw, that was a big one!"
+#fail_msg="Installation of Qt5 failed, that's frustrating..."
+#$EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot --disable-cleanup-tmpdir
+#check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # skip test step when installing SciPy-bundle on aarch64,
 # to dance around problem with broken numpy tests;
@@ -377,11 +377,11 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB OSU-Micro-Benchmarks-5.6.3-gompi-2020a.eb -r
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-echo ">> Installing Spark 3.1.1..."
-ok_msg="Spark installed, set off the fireworks!"
-fail_msg="Installation of Spark failed, no fireworks this time..."
-$EB Spark-3.1.1-foss-2020a-Python-3.8.2.eb -r
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+#echo ">> Installing Spark 3.1.1..."
+#ok_msg="Spark installed, set off the fireworks!"
+#fail_msg="Installation of Spark failed, no fireworks this time..."
+#$EB Spark-3.1.1-foss-2020a-Python-3.8.2.eb -r
+#check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing IPython 7.15.0..."
 #ok_msg="IPython installed, launch your Jupyter Notebooks!"
@@ -401,12 +401,12 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB --from-pr 14821 X11-20210518-GCCcore-10.3.0.eb -r && $EB --from-pr 16011 R-4.1.0-foss-2021a.eb --robot --parallel-extensions-install --experimental
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-echo ">> Installing Nextflow 22.10.1..."
-ok_msg="Nextflow installed, the work must flow..."
-fail_msg="Installation of Nextflow failed, that's unexpected..."
+#echo ">> Installing Nextflow 22.10.1..."
+#ok_msg="Nextflow installed, the work must flow..."
+#fail_msg="Installation of Nextflow failed, that's unexpected..."
 # Comment from Axel: PR 16531 was merged so --from-pr not needed anymore (but was used in this build)
-$EB -r --from-pr 16531 Nextflow-22.10.1.eb
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+#$EB -r --from-pr 16531 Nextflow-22.10.1.eb
+#check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing OSU-Micro-Benchmarks/5.7.1-gompi-2021a..."
 #ok_msg="OSU-Micro-Benchmarks installed, yihaa!"
@@ -434,7 +434,7 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
 #use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
 #from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
-$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
+#$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 # use Rust easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14584
 # that includes patch to fix bootstrap problem when using alternate sysroot
 #$EB --from-pr 14584 Rust-1.52.1-GCCcore-10.3.0.eb --robot
@@ -459,10 +459,10 @@ $EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
 #####################
 ### add packages here
 #####################
-$EB Python-3.9.5-GCCcore-10.3.0.eb --robot
-$EB OpenMPI-4.1.1-GCC-10.3.0.eb  --robot 
+#$EB Python-3.9.5-GCCcore-10.3.0.eb --robot
+#$EB OpenMPI-4.1.1-GCC-10.3.0.eb  --robot 
 # this Package has been added to reduce the complexity of building large packages such as R
-$EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
+#$EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
 # example block showing a few debugging means
 #echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
 #ok_msg="CaDiCaL installed. Nice!"
