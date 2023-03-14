@@ -84,11 +84,13 @@ export PYTHONPYCACHEPREFIX=$TMPDIR/pycache
 DETECTION_PARAMETERS=''
 GENERIC=0
 EB='eb'
+DELETE=0
 if [[ "$EASYBUILD_OPTARCH" == "GENERIC" ]]; then
     echo_yellow ">> GENERIC build requested, taking appropriate measures!"
     DETECTION_PARAMETERS="$DETECTION_PARAMETERS --generic"
     GENERIC=1
     EB='eb --optarch=GENERIC'
+    DELETE=1 
 fi
 
 echo ">> Determining software subdirectory to use for current build host..."
@@ -143,11 +145,16 @@ case ${EESSI_CVMFS_REPO} in
         REQ_EB_VERSION='4.5.0'
         ;;
     /cvmfs/pilot.nessi.no*)
-        REQ_EB_VERSION='4.7.0'
+        REQ_EB_VERSION='4.6.2'
         ;;
     *)
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
 esac
+echo "Deleting the generic software/modules repo"
+if [ DELETE -eq 1]; then 
+	rm -rf /cvmfs/*/*/*/*/*/*/*/software/*
+	rm -rf /cvmfs/*/*/*/*/*/*/*/modules/*
+fi	
 echo "REQ_EB_VERSION=${REQ_EB_VERSION}"
 module avail 2>&1 | grep -i easybuild
 
