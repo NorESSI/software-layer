@@ -114,11 +114,12 @@ else
     echo_green ">> Using ${EESSI_SOFTWARE_SUBDIR} as software subdirectory!"
 fi
 
-if [ DELETE -eq 1 ]; then
+if [ $DELETE -eq 1 ]; then
 
-        echo "Deleting the generic REPOs"
+        echo "Deleting the generic REPOs..."
         rm -rf /cvmfs/*/*/*/*/*/*/*/software/*
         rm -rf /cvmfs/*/*/*/*/*/*/*/modules/*
+fi
 
 echo ">> Initializing Lmod..."
 source $EPREFIX/usr/share/Lmod/init/bash
@@ -156,7 +157,6 @@ case ${EESSI_CVMFS_REPO} in
     *)
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
 esac
-echo "Deleting the generic software/modules repo and setting EB_VERSION"
 echo "REQ_EB_VERSION=${REQ_EB_VERSION}"
 module avail 2>&1 | grep -i easybuild
 
