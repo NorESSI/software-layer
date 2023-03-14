@@ -118,7 +118,6 @@ if [ $DELETE -eq 1 ]; then
 
         echo "Deleting the generic REPOs..."
         rm -rf /cvmfs/pilot.nessi.no/latest/software/linux/x86_64/generic/modules/all/*
-        rm -rf /cvmfs/pilot.nessi.no/latest/software/linux/x86_64/generic/software/*
 fi
 
 echo ">> Initializing Lmod..."
