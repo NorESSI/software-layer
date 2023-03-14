@@ -151,7 +151,7 @@ case ${EESSI_CVMFS_REPO} in
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
 esac
 echo "Deleting the generic software/modules repo and setting EB_VERSION"
-if [ DELETE -eq 1]; then
+if [ DELETE -eq 1 ]; then
 	 
         REQ_EB_VERSION='4.6.2'
 	rm -rf /cvmfs/*/*/*/*/*/*/*/software/*
