@@ -186,8 +186,8 @@ else
     check_exit_code $? "${ok_msg}" "${fail_msg}"
 
     # restore origin $PATH and $PYTHONPATH values
-    export PATH=${ORIG_PATH}
-    export PYTHONPATH=${ORIG_PYTHONPATH}
+#    export PATH=${ORIG_PATH}
+#    export PYTHONPATH=${ORIG_PYTHONPATH}
 
     eb --search EasyBuild-${REQ_EB_VERSION}.eb | grep EasyBuild-${REQ_EB_VERSION}.eb > /dev/null
     if [[ $? -eq 0 ]]; then
