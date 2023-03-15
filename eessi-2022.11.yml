@@ -1,6 +1,7 @@
 easyconfigs:
   - EasyBuild-4.6.2.eb
   - EasyBuild-4.7.0.eb
-  - Java-11.0.2.eb
+  - Java-11.eb
+  - Java-17.eb
   - GCC-9.3.0.eb
   - GCC-10.3.0.eb
