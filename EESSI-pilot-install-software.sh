@@ -151,7 +151,7 @@ case ${EESSI_CVMFS_REPO} in
         REQ_EB_VERSION='4.5.0'
         ;;
     /cvmfs/pilot.nessi.no*)
-        REQ_EB_VERSION='4.6.2'
+        REQ_EB_VERSION='4.7.0'
         ;;
     *)
         fatal_error "unsupported CVMFS repository '${EESSI_CVMFS_REPO}'"
