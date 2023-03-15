@@ -91,6 +91,7 @@ if [[ "$EASYBUILD_OPTARCH" == "GENERIC" ]]; then
     EB='eb --optarch=GENERIC'
 fi
 
+EESSI_SOFTWARE_SUBDIR_OVERRIDE=$(uname -m)/GENERIC
 echo ">> Determining software subdirectory to use for current build host..."
 if [ -z $EESSI_SOFTWARE_SUBDIR_OVERRIDE ]; then
   export EESSI_SOFTWARE_SUBDIR_OVERRIDE=$(python3 $TOPDIR/eessi_software_subdir.py $DETECTION_PARAMETERS)
@@ -217,6 +218,8 @@ else
 fi
 
 echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALLPATH}..."
+
+exit 0
 
 ################################################################################
 # COMMENT OUT EB install sections below to not hit GH rate limit because of
