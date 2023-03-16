@@ -1,9 +1,7 @@
 easyconfigs:
-#  - EasyBuild-4.7.0.eb
-#  - CMake-3.20.1-GCCcore-10.3.0.eb
-#  - Python-3.9.5-GCCcore-10.3.0.eb
-#  - OpenMPI-4.1.1-GCC-10.3.0.eb
-#  - ImageMagick-7.0.11-14-GCCcore-10.3.0.eb
-#  - Nextflow-22.10.1.eb
-#  - Qt5-5.14.1-GCCcore-9.3.0.eb
-#  - Spark-3.1.1-foss-2020a-Python-3.8.2.eb
+  - EasyBuild-4.6.2.eb
+  - EasyBuild-4.7.0.eb
+  - Java-11.eb
+  - Java-17.eb
+  - GCC-9.3.0.eb
+  - GCC-10.3.0.eb

@@ -225,20 +225,20 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 # install Java with fixed custom easyblock that uses patchelf to ensure right glibc is picked up,
 # see https://github.com/EESSI/software-layer/issues/123
 # and https://github.com/easybuilders/easybuild-easyblocks/pull/2557
-#ok_msg="Java installed, off to a good (?) start!"
-#fail_msg="Failed to install Java, woopsie..."
-#$EB Java-11.eb --robot --include-easyblocks-from-pr 2557
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+ok_msg="Java installed, off to a good (?) start!"
+fail_msg="Failed to install Java, woopsie..."
+$EB Java-11.eb --robot --include-easyblocks-from-pr 2557
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # install GCC for foss/2020a
-#export GCC_EC="GCC-9.3.0.eb"
-#echo ">> Starting slow with ${GCC_EC}..."
-#ok_msg="${GCC_EC} installed, yippy! Off to a good start..."
-#fail_msg="Installation of ${GCC_EC} failed!"
+export GCC_EC="GCC-9.3.0.eb"
+echo ">> Starting slow with ${GCC_EC}..."
+ok_msg="${GCC_EC} installed, yippy! Off to a good start..."
+fail_msg="Installation of ${GCC_EC} failed!"
 # pull in easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14453,
 # which includes patch to fix build of GCC 9.3 when recent kernel headers are in place
-#$EB ${GCC_EC} --robot --from-pr 14453 GCCcore-9.3.0.eb
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+$EB ${GCC_EC} --robot --from-pr 14453 GCCcore-9.3.0.eb
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # install CMake with custom easyblock that patches CMake when --sysroot is used
 #echo ">> Install CMake with fixed easyblock to take into account --sysroot"
@@ -463,6 +463,25 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #$EB --last-log
 #cat $($EB --last-log)
 #check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
+echo ">> Installing EasyBuild 4.6.2..."
+ok_msg="EasyBuild v4.6.2 installed"
+fail_msg="EasyBuild v4.6.2 failed to install"
+$EB --robot EasyBuild-4.6.2.eb
+check_exit_code $? "${ok_msg}" "${fail_msg}"
+
+# install GCC for foss/2021a
+export GCC_EC="GCC-10.3.0.eb"
+echo ">> Starting slow with ${GCC_EC}..."
+ok_msg="${GCC_EC} installed, yippy! Off to a good start..."
+fail_msg="Installation of ${GCC_EC} failed!"
+$EB --robot  GCCcore-10.3.0.eb
+check_exit_code $? "${ok_msg}" "${fail_msg}"
+
+# install Java 17
+ok_msg="Java installed, off to a good (?) start!"
+fail_msg="Failed to install Java, woopsie..."
+$EB Java-17.eb --robot 
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 
 echo ">> Creating/updating Lmod cache..."
