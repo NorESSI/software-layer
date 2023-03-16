@@ -488,6 +488,11 @@ $EB --robot BLIS-0.8.1-GCC-10.3.0.eb
 echo "AFTER EB-installing BLIS"
 ls -l ${EESSI_SOFTWARE_PATH}/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
 
+$EB --robot OpenBLAS-0.3.15-GCC-10.3.0.eb
+
+echo "AFTER EB-installing OpenBLAS"
+ls -l ${EESSI_SOFTWARE_PATH}/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
+
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
