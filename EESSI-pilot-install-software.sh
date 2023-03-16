@@ -481,22 +481,22 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 #check_exit_code ${exit_code} "${ok_msg}" "${fail_msg}"
 
 echo "BEFORE EB-installing BLIS"
-ls -l ${EESSI_SOFTWARE_PATH}/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
+ls -l ${EESSI_SOFTWARE_PATH}/software/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
 
 $EB --robot BLIS-0.8.1-GCC-10.3.0.eb
 
 echo "AFTER EB-installing BLIS"
-ls -l ${EESSI_SOFTWARE_PATH}/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
+ls -l ${EESSI_SOFTWARE_PATH}/software/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
 
 $EB --robot OpenBLAS-0.3.15-GCC-10.3.0.eb
 
 echo "AFTER EB-installing OpenBLAS"
-ls -l ${EESSI_SOFTWARE_PATH}/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
+ls -l ${EESSI_SOFTWARE_PATH}/software/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
 
 $EB --robot FlexiBLAS-3.0.4-GCC-10.3.0.eb
 
 echo "AFTER EB-installing FlexiBLAS"
-ls -l ${EESSI_SOFTWARE_PATH}/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
+ls -l ${EESSI_SOFTWARE_PATH}/software/Python/3.9.5-GCCcore-10.3.0/easybuild/python/__pycache__/
 
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
