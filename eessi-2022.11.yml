@@ -6,3 +6,8 @@ easyconfigs:
   - GCC-9.3.0.eb
   - GCC-10.3.0.eb
   - CMake-3.16.4-GCCcore-9.3.0.eb
+  - OpenBLAS-0.3.9-GCC-9.3.0.eb
+  - OpenMPI-4.0.3-GCC-9.3.0.eb
+  - Python-2.7.18-GCCcore-9.3.0.eb
+  - Python-3.8.2-GCCcore-9.3.0.eb
+  - Perl-5.30.2-GCCcore-9.3.0.eb
