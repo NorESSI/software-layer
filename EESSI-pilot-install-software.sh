@@ -248,38 +248,40 @@ $EB CMake-3.16.4-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2248
 check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # If we're building OpenBLAS for GENERIC, we need https://github.com/easybuilders/easybuild-easyblocks/pull/1946
-#echo ">> Installing OpenBLAS..."
-#ok_msg="Done with OpenBLAS!"
-#fail_msg="Installation of OpenBLAS failed!"
-#if [[ $GENERIC -eq 1 ]]; then
-#    echo_yellow ">> Using https://github.com/easybuilders/easybuild-easyblocks/pull/1946 to build generic OpenBLAS."
-#    openblas_include_easyblocks_from_pr="--include-easyblocks-from-pr 1946"
-#else
-#    openblas_include_easyblocks_from_pr=''
-#fi
-#$EB $openblas_include_easyblocks_from_pr OpenBLAS-0.3.9-GCC-9.3.0.eb --robot
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing OpenBLAS..."
+ok_msg="Done with OpenBLAS!"
+fail_msg="Installation of OpenBLAS failed!"
+if [[ $GENERIC -eq 1 ]]; then
+    echo_yellow ">> Using https://github.com/easybuilders/easybuild-easyblocks/pull/1946 to build generic OpenBLAS."
+    openblas_include_easyblocks_from_pr="--include-easyblocks-from-pr 1946"
+else
+    openblas_include_easyblocks_from_pr=''
+fi
+$EB $openblas_include_easyblocks_from_pr OpenBLAS-0.3.9-GCC-9.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing OpenMPI..."
-#ok_msg="OpenMPI installed, w00!"
-#fail_msg="Installation of OpenMPI failed, that's not good..."
-#$EB OpenMPI-4.0.3-GCC-9.3.0.eb --robot
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing OpenMPI..."
+ok_msg="OpenMPI installed, w00!"
+fail_msg="Installation of OpenMPI failed, that's not good..."
+$EB OpenMPI-4.0.3-GCC-9.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # install Python
-#echo ">> Install Python 2.7.18 and Python 3.8.2..."
-#ok_msg="Python 2.7.18 and 3.8.2 installed, yaay!"
-#fail_msg="Installation of Python failed, oh no..."
-#$EB Python-2.7.18-GCCcore-9.3.0.eb Python-3.8.2-GCCcore-9.3.0.eb --robot
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Install Python 2.7.18 and Python 3.8.2..."
+ok_msg="Python 2.7.18 and 3.8.2 installed, yaay!"
+fail_msg="Installation of Python failed, oh no..."
+$EB Python-2.7.18-GCCcore-9.3.0.eb Python-3.8.2-GCCcore-9.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Perl..."
-#ok_msg="Perl installed, making progress..."
-#fail_msg="Installation of Perl failed, this never happens..."
+echo ">> Installing Perl..."
+ok_msg="Perl installed, making progress..."
+fail_msg="Installation of Perl failed, this never happens..."
 # use enhanced Perl easyblock from https://github.com/easybuilders/easybuild-easyblocks/pull/2640
 # to avoid trouble when using long installation prefix (for example with EESSI pilot 2021.12 on skylake_avx512...)
-#$EB Perl-5.30.2-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2640
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+# PR 2640 has been merged for a while already, see https://github.com/easybuilders/easybuild-easyblocks/pull/2640
+# $EB Perl-5.30.2-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2640
+$EB Perl-5.30.2-GCCcore-9.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing Qt5..."
 #ok_msg="Qt5 installed, phieuw, that was a big one!"
