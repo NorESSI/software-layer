@@ -485,7 +485,8 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 echo ">> Installing ImageMagick/7.0.11-14 with GCCcore/10.3.0..."
 ok_msg="ImageMagick/7.0.11-14 with GCCcore/10.3.0 installed, w00!"
 fail_msg="Installation of ImageMagick/7.0.11-14 with GCCcore/10.3.0 failed, that's not good..."
-#$EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
+$EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # example block showing a few debugging means
 #echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
