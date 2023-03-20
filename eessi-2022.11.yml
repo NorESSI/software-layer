@@ -5,3 +5,4 @@ easyconfigs:
   - Java-17.eb
   - GCC-9.3.0.eb
   - GCC-10.3.0.eb
+  - CMake-3.16.4-GCCcore-9.3.0.eb
