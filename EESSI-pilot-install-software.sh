@@ -508,7 +508,7 @@ export GCC_EC="GCC-10.3.0.eb"
 echo ">> Starting slow with ${GCC_EC}..."
 ok_msg="${GCC_EC} installed, yippy! Off to a good start..."
 fail_msg="Installation of ${GCC_EC} failed!"
-$EB --robot  GCCcore-10.3.0.eb
+$EB --robot ${GCC_EC}
 check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # install Java 17
