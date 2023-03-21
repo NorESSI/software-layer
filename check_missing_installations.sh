@@ -26,6 +26,10 @@ fail_msg="On no, some installations are still missing, how did that happen?!"
 eb_missing_out=$LOCAL_TMPDIR/eb_missing.out
 # we need to use --from-pr to pull in some easyconfigs that are not available in EasyBuild version being used
 # PR #16531: Nextflow-22.10.1.eb
+# ${EB:-eb} --from-pr 16531 --easystack eessi-${EESSI_PILOT_VERSION}.yml --experimental --missing | tee ${eb_missing_out}
+# PR 16531 not needed since we use EB v4.7.0
+# this, however, breaks the GHA https://github.com/NorESSI/software-layer/blob/main/.github/workflows/test_eessi.yml
+# because it uses the EESSI pilot which only provides EB 4.5.1, so adding it back
 ${EB:-eb} --from-pr 16531 --easystack eessi-${EESSI_PILOT_VERSION}.yml --experimental --missing | tee ${eb_missing_out}
 
 # the above assesses the installed software for each easyconfig provided in
