@@ -427,13 +427,29 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
 #use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
 #from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
-#$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
+echo ">> Installing CMake/3.20.1 with GCCcore/10.3.0..."
+ok_msg="CMake/3.20.11 with GCCcore/10.3.0 installed"
+fail_msg="CMake/3.20.11 with GCCcore/10.3.0 failed to install"
+$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 # use Rust easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14584
 # that includes patch to fix bootstrap problem when using alternate sysroot
 #$EB --from-pr 14584 Rust-1.52.1-GCCcore-10.3.0.eb --robot
 # use OpenBLAS easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/15885
 # which includes a patch to fix installation on POWER
-#$EB $openblas_include_easyblocks_from_pr --from-pr 15885 OpenBLAS-0.3.15-GCC-10.3.0.eb --robot
+# echo ">> Installing OpenBLAS/0.3.15 with GCC/10.3.0..."
+# ok_msg="Done with OpenBLAS/0.3.15!"
+# fail_msg="Installation of OpenBLAS/0.3.15 failed!"
+# if [[ $GENERIC -eq 1 ]]; then
+#     echo_yellow ">> Using https://github.com/easybuilders/easybuild-easyblocks/pull/1946 to build generic OpenBLAS."
+#     openblas_include_easyblocks_from_pr="--include-easyblocks-from-pr 1946"
+# else
+#     openblas_include_easyblocks_from_pr=''
+# fi
+# # PR 15885 got merged, see https://github.com/easybuilders/easybuild-easyconfigs/pull/15885
+# # $EB $openblas_include_easyblocks_from_pr --from-pr 15885 OpenBLAS-0.3.15-GCC-10.3.0.eb --robot
+# $EB $openblas_include_easyblocks_from_pr OpenBLAS-0.3.15-GCC-10.3.0.eb --robot
+# check_exit_code $? "${ok_msg}" "${fail_msg}"
 # ignore failing FlexiBLAS tests when building on POWER;
 # some tests are failing due to a segmentation fault due to "invalid memory reference",
 # see also https://github.com/easybuilders/easybuild-easyconfigs/pull/12476;
@@ -452,10 +468,26 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #####################
 ### add packages here
 #####################
-#$EB Python-3.9.5-GCCcore-10.3.0.eb --robot
-#$EB OpenMPI-4.1.1-GCC-10.3.0.eb  --robot 
+# install Python
+echo ">> Install Python/3.9.5 with GCCcore/10.3.0..."
+ok_msg="Python/3.9.5 installed, yaay!"
+fail_msg="Installation of Python/3.9.5 failed, oh no..."
+$EB Python-3.9.5-GCCcore-10.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
+
+echo ">> Installing OpenMPI/4.1.1 with GCC/10.3.0..."
+ok_msg="OpenMPI/4.1.1 with GCC/10.3.0 installed, w00!"
+fail_msg="Installation of OpenMPI/4.1.1 with GCC/10.3.0 failed, that's not good..."
+$EB OpenMPI-4.1.1-GCC-10.3.0.eb  --robot 
+check_exit_code $? "${ok_msg}" "${fail_msg}"
+
 # this Package has been added to reduce the complexity of building large packages such as R
-#$EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
+echo ">> Installing ImageMagick/7.0.11-14 with GCCcore/10.3.0..."
+ok_msg="ImageMagick/7.0.11-14 with GCCcore/10.3.0 installed, w00!"
+fail_msg="Installation of ImageMagick/7.0.11-14 with GCCcore/10.3.0 failed, that's not good..."
+$EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
+
 # example block showing a few debugging means
 #echo "Installing CaDiCaL/1.3.0 for GCC/9.3.0..."
 #ok_msg="CaDiCaL installed. Nice!"
