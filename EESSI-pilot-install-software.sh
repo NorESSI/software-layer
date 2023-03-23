@@ -283,11 +283,11 @@ fail_msg="Installation of Perl failed, this never happens..."
 $EB Perl-5.30.2-GCCcore-9.3.0.eb --robot
 check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Qt5..."
-#ok_msg="Qt5 installed, phieuw, that was a big one!"
-#fail_msg="Installation of Qt5 failed, that's frustrating..."
-#$EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot --disable-cleanup-tmpdir
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Qt5..."
+ok_msg="Qt5 installed, phieuw, that was a big one!"
+fail_msg="Installation of Qt5 failed, that's frustrating..."
+$EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot --disable-cleanup-tmpdir
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # skip test step when installing SciPy-bundle on aarch64,
 # to dance around problem with broken numpy tests;

@@ -14,3 +14,4 @@ easyconfigs:
   - Python-3.9.5-GCCcore-10.3.0.eb
   - Perl-5.30.2-GCCcore-9.3.0.eb
   - ImageMagick-7.0.11-14-GCCcore-10.3.0.eb
+  - Qt5-5.14.1-GCCcore-9.3.0.eb
