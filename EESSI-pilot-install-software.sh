@@ -292,16 +292,16 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 # skip test step when installing SciPy-bundle on aarch64,
 # to dance around problem with broken numpy tests;
 # cfr. https://github.com/easybuilders/easybuild-easyconfigs/issues/11959
-#echo ">> Installing SciPy-bundle"
-#ok_msg="SciPy-bundle installed, yihaa!"
-#fail_msg="SciPy-bundle installation failed, bummer..."
-#SCIPY_EC=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
-#if [[ "$(uname -m)" == "aarch64" ]]; then
-#  $EB $SCIPY_EC --robot --skip-test-step
-#else
-#  $EB $SCIPY_EC --robot
-#fi
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing SciPy-bundle"
+ok_msg="SciPy-bundle installed, yihaa!"
+fail_msg="SciPy-bundle installation failed, bummer..."
+SCIPY_EC=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
+if [[ "$(uname -m)" == "aarch64" ]]; then
+  $EB $SCIPY_EC --robot --skip-test-step
+else
+  $EB $SCIPY_EC --robot
+fi
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing GROMACS..."
 #ok_msg="GROMACS installed, wow!"
