@@ -518,7 +518,7 @@ $EB Java-17.eb --robot
 check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 
-echo ">> Creating/updating Lmod cache..."
+echo ">> Creating/updating Lmod cache (generic rebuild only, nr 1) ..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
     python3 $TOPDIR/create_lmodrc.py ${EASYBUILD_INSTALLPATH}
