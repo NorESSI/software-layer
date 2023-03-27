@@ -225,10 +225,11 @@ echo_green "All set, let's start installing some software in ${EASYBUILD_INSTALL
 # install Java with fixed custom easyblock that uses patchelf to ensure right glibc is picked up,
 # see https://github.com/EESSI/software-layer/issues/123
 # and https://github.com/easybuilders/easybuild-easyblocks/pull/2557
-ok_msg="Java installed, off to a good (?) start!"
-fail_msg="Failed to install Java, woopsie..."
-$EB Java-11.eb --robot --include-easyblocks-from-pr 2557
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+# PR 2557 still needed so we comment it out here
+# ok_msg="Java installed, off to a good (?) start!"
+# fail_msg="Failed to install Java, woopsie..."
+# $EB Java-11.eb --robot --include-easyblocks-from-pr 2557
+# check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # install GCC for foss/2020a
 export GCC_EC="GCC-9.3.0.eb"
@@ -237,28 +238,31 @@ ok_msg="${GCC_EC} installed, yippy! Off to a good start..."
 fail_msg="Installation of ${GCC_EC} failed!"
 # pull in easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14453,
 # which includes patch to fix build of GCC 9.3 when recent kernel headers are in place
-$EB ${GCC_EC} --robot --from-pr 14453 GCCcore-9.3.0.eb
+# PR 14453 merged 2021
+$EB ${GCC_EC} --robot GCCcore-9.3.0.eb
 check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # install CMake with custom easyblock that patches CMake when --sysroot is used
-echo ">> Install CMake with fixed easyblock to take into account --sysroot"
-ok_msg="CMake installed!"
-fail_msg="Installation of CMake failed, what the ..."
-$EB CMake-3.16.4-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2248
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+# PR 2248 still needed so we comment it out here
+# echo ">> Install CMake with fixed easyblock to take into account --sysroot"
+# ok_msg="CMake installed!"
+# fail_msg="Installation of CMake failed, what the ..."
+# $EB CMake-3.16.4-GCCcore-9.3.0.eb --robot --include-easyblocks-from-pr 2248
+# check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 # If we're building OpenBLAS for GENERIC, we need https://github.com/easybuilders/easybuild-easyblocks/pull/1946
-echo ">> Installing OpenBLAS..."
-ok_msg="Done with OpenBLAS!"
-fail_msg="Installation of OpenBLAS failed!"
-if [[ $GENERIC -eq 1 ]]; then
-    echo_yellow ">> Using https://github.com/easybuilders/easybuild-easyblocks/pull/1946 to build generic OpenBLAS."
-    openblas_include_easyblocks_from_pr="--include-easyblocks-from-pr 1946"
-else
-    openblas_include_easyblocks_from_pr=''
-fi
-$EB $openblas_include_easyblocks_from_pr OpenBLAS-0.3.9-GCC-9.3.0.eb --robot
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+# PR 1946 still needed so we comment it out here
+#echo ">> Installing OpenBLAS..."
+#ok_msg="Done with OpenBLAS!"
+#fail_msg="Installation of OpenBLAS failed!"
+#if [[ $GENERIC -eq 1 ]]; then
+#    echo_yellow ">> Using https://github.com/easybuilders/easybuild-easyblocks/pull/1946 to build generic OpenBLAS."
+#    openblas_include_easyblocks_from_pr="--include-easyblocks-from-pr 1946"
+#else
+#    openblas_include_easyblocks_from_pr=''
+#fi
+#$EB $openblas_include_easyblocks_from_pr OpenBLAS-0.3.9-GCC-9.3.0.eb --robot
+#check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 echo ">> Installing OpenMPI..."
 ok_msg="OpenMPI installed, w00!"
@@ -292,16 +296,16 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 # skip test step when installing SciPy-bundle on aarch64,
 # to dance around problem with broken numpy tests;
 # cfr. https://github.com/easybuilders/easybuild-easyconfigs/issues/11959
-#echo ">> Installing SciPy-bundle"
-#ok_msg="SciPy-bundle installed, yihaa!"
-#fail_msg="SciPy-bundle installation failed, bummer..."
-#SCIPY_EC=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
-#if [[ "$(uname -m)" == "aarch64" ]]; then
-#  $EB $SCIPY_EC --robot --skip-test-step
-#else
-#  $EB $SCIPY_EC --robot
-#fi
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing SciPy-bundle"
+ok_msg="SciPy-bundle installed, yihaa!"
+fail_msg="SciPy-bundle installation failed, bummer..."
+SCIPY_EC=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
+if [[ "$(uname -m)" == "aarch64" ]]; then
+  $EB $SCIPY_EC --robot --skip-test-step
+else
+  $EB $SCIPY_EC --robot
+fi
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing GROMACS..."
 #ok_msg="GROMACS installed, wow!"
@@ -370,11 +374,11 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB OSU-Micro-Benchmarks-5.6.3-gompi-2020a.eb -r
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Spark 3.1.1..."
-#ok_msg="Spark installed, set off the fireworks!"
-#fail_msg="Installation of Spark failed, no fireworks this time..."
-#$EB Spark-3.1.1-foss-2020a-Python-3.8.2.eb -r
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Spark 3.1.1..."
+ok_msg="Spark installed, set off the fireworks!"
+fail_msg="Installation of Spark failed, no fireworks this time..."
+$EB Spark-3.1.1-foss-2020a-Python-3.8.2.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing IPython 7.15.0..."
 #ok_msg="IPython installed, launch your Jupyter Notebooks!"
@@ -382,11 +386,13 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB IPython-7.15.0-foss-2020a-Python-3.8.2.eb -r
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing WRF 3.9.1.1..."
-#ok_msg="WRF installed, it's getting hot in here!"
-#fail_msg="Installation of WRF failed, that's unexpected..."
-#OMPI_MCA_pml=ucx UCX_TLS=tcp $EB WRF-3.9.1.1-foss-2020a-dmpar.eb -r --include-easyblocks-from-pr 2648
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing WRF 3.9.1.1..."
+ok_msg="WRF installed, it's getting hot in here!"
+fail_msg="Installation of WRF failed, that's unexpected..."
+# PR 2648 has been merged on Jan 15 2022, so we don't need it with EB 4.7.0 which
+# was released Jan 09 2023 (about a year later)
+OMPI_MCA_pml=ucx UCX_TLS=tcp $EB WRF-3.9.1.1-foss-2020a-dmpar.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing R 4.1.0 (better be patient)..."
 #ok_msg="R installed, wow!"
@@ -394,18 +400,18 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB --from-pr 14821 X11-20210518-GCCcore-10.3.0.eb -r && $EB --from-pr 16011 R-4.1.0-foss-2021a.eb --robot --parallel-extensions-install --experimental
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing Nextflow 22.10.1..."
-#ok_msg="Nextflow installed, the work must flow..."
-#fail_msg="Installation of Nextflow failed, that's unexpected..."
-## Comment from Axel: PR 16531 was merged so --from-pr not needed anymore (but was used in this build)
-#$EB -r --from-pr 16531 Nextflow-22.10.1.eb
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing Nextflow 22.10.1..."
+ok_msg="Nextflow installed, the work must flow..."
+fail_msg="Installation of Nextflow failed, that's unexpected..."
+# Comment from Axel: PR 16531 was merged so --from-pr not needed anymore (but was used in this build)
+$EB Nextflow-22.10.1.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#echo ">> Installing OSU-Micro-Benchmarks/5.7.1-gompi-2021a..."
-#ok_msg="OSU-Micro-Benchmarks installed, yihaa!"
-#fail_msg="Installation of OSU-Micro-Benchmarks failed, that's unexpected..."
-#$EB OSU-Micro-Benchmarks-5.7.1-gompi-2021a.eb -r
-#check_exit_code $? "${ok_msg}" "${fail_msg}"
+echo ">> Installing OSU-Micro-Benchmarks/5.7.1-gompi-2021a..."
+ok_msg="OSU-Micro-Benchmarks installed, yihaa!"
+fail_msg="Installation of OSU-Micro-Benchmarks failed, that's unexpected..."
+$EB OSU-Micro-Benchmarks-5.7.1-gompi-2021a.eb --robot
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 #echo ">> Installing EasyBuild 4.5.1..."
 #ok_msg="EasyBuild v4.5.1 installed"
@@ -427,11 +433,13 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB Perl-5.32.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2640
 #use enhanced CMake easyblock to patch CMake's UnixPaths.cmake script if --sysroot is set
 #from https://github.com/easybuilders/easybuild-easyblocks/pull/2248
-echo ">> Installing CMake/3.20.1 with GCCcore/10.3.0..."
-ok_msg="CMake/3.20.11 with GCCcore/10.3.0 installed"
-fail_msg="CMake/3.20.11 with GCCcore/10.3.0 failed to install"
-$EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
-check_exit_code $? "${ok_msg}" "${fail_msg}"
+# PR 2248 still open, so we comment the below block out
+# echo ">> Installing CMake/3.20.1 with GCCcore/10.3.0..."
+# ok_msg="CMake/3.20.11 with GCCcore/10.3.0 installed"
+# fail_msg="CMake/3.20.11 with GCCcore/10.3.0 failed to install"
+# $EB CMake-3.20.1-GCCcore-10.3.0.eb --robot --include-easyblocks-from-pr 2248
+# check_exit_code $? "${ok_msg}" "${fail_msg}"
+
 # use Rust easyconfig from https://github.com/easybuilders/easybuild-easyconfigs/pull/14584
 # that includes patch to fix bootstrap problem when using alternate sysroot
 #$EB --from-pr 14584 Rust-1.52.1-GCCcore-10.3.0.eb --robot
@@ -518,7 +526,7 @@ $EB Java-17.eb --robot
 check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 
-echo ">> Creating/updating Lmod cache..."
+echo ">> Creating/updating Lmod cache (generic rebuild only, nr 1) ..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
     python3 $TOPDIR/create_lmodrc.py ${EASYBUILD_INSTALLPATH}
