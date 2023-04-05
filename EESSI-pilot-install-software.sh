@@ -315,13 +315,17 @@ check_exit_code $? "${ok_msg}" "${fail_msg}"
 #$EB OpenFOAM-8-foss-2020a.eb OpenFOAM-v2006-foss-2020a.eb --robot
 #check_exit_code $? "${ok_msg}" "${fail_msg}"
 
-#if [ ! "${EESSI_CPU_FAMILY}" = "ppc64le" ]; then
-#    echo ">> Installing QuantumESPRESSO..."
-#    ok_msg="QuantumESPRESSO installed, let's go quantum!"
-#    fail_msg="Installation of QuantumESPRESSO failed, did somebody observe it?!"
-#    $EB QuantumESPRESSO-6.6-foss-2020a.eb --robot
-#    check_exit_code $? "${ok_msg}" "${fail_msg}"
-#fi
+
+if [ ! "${EESSI_CPU_FAMILY}" = "ppc64le" ]; then
+    echo ">> Installing QuantumESPRESSO..."
+    ok_msg="QuantumESPRESSO installed, let's go quantum!"
+    fail_msg="Installation of QuantumESPRESSO failed, did somebody observe it?!"
+   # ELPA source url has changed between EasyBuild 4.7.0 and 4.7.1, need to use --from-pr
+   # until 4.7.1 is installed
+    $EB --from-pr 17357 ELPA-2019.11.001-foss-2020a.eb --robot
+    $EB QuantumESPRESSO-6.6-foss-2020a.eb --robot
+    check_exit_code $? "${ok_msg}" "${fail_msg}"
+fi
 
 echo ">> Installing R 4.0.0 (better be patient)..."
 ok_msg="R installed, wow!"
