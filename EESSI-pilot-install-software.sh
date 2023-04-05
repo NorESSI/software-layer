@@ -472,7 +472,7 @@ $EB ImageMagick-7.0.11-14-GCCcore-10.3.0.eb --robot
 ok_msg="HPCG installed, Nice!"
 fail_msg="Installation of HPCG failed, that's unexpected..."
 $EB  HPCG-3.1-foss-2021a.eb --robot
-check_exit_code $exit_code "${ok_msg}" "${fail_msg}"
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 
 echo ">> Creating/updating Lmod cache on $(date) (nr 1) ..."
