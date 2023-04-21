@@ -1,5 +1,5 @@
 easyconfigs:
   - GCC-9.3.0.eb
-  - GCC-10.3.0.eb
+#  - GCC-10.3.0.eb
 #  - GCC-11.3.0.eb
 #  - GCC-12.2.0.eb
