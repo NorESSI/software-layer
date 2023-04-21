@@ -50,6 +50,12 @@ def parse_hook(ec, *args, **kwargs):
     # determine path to Prefix installation in compat layer via $EPREFIX
     eprefix = get_eessi_envvar('EPREFIX')
 
+    # write name of currently processed ec to _bot_jobJOBID.progress
+    job_progress_file = os.getenv('JOB_PROGRESS_FILE')
+    if job_progress_file:
+        with open(job_progress_file, "w") as jpf:
+            jpf.write(f"[PROGRESS]\nsummary = {ec.filename()}\n")
+
     if ec.name in PARSE_HOOKS:
         PARSE_HOOKS[ec.name](ec, eprefix)
 

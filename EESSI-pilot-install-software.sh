@@ -151,6 +151,8 @@ esac
 echo "REQ_EB_VERSION=${REQ_EB_VERSION}"
 module avail 2>&1 | grep -i easybuild
 
+export JOB_PROGRESS_FILE="_bot_job${SLURM_JOB_ID}.progress"
+
 echo ">> Checking for EasyBuild module..."
 ml_av_easybuild_out=$TMPDIR/ml_av_easybuild.out
 module avail 2>&1 | grep -i easybuild/${REQ_EB_VERSION} &> ${ml_av_easybuild_out}
@@ -286,6 +288,8 @@ ok_msg="Qt5 installed, phieuw, that was a big one!"
 fail_msg="Installation of Qt5 failed, that's frustrating..."
 $EB Qt5-5.14.1-GCCcore-9.3.0.eb --robot --disable-cleanup-tmpdir
 check_exit_code $? "${ok_msg}" "${fail_msg}"
+
+exit 0
 
 # skip test step when installing SciPy-bundle on aarch64,
 # to dance around problem with broken numpy tests;
