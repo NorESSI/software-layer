@@ -3,7 +3,9 @@ easyconfigs:
   - GCC-10.3.0.eb:
       options:
         include-easyblocks-from-pr: 2921
-#  - GCC-11.3.0.eb
+  - GCC-11.3.0.eb
+      options:
+        include-easyblocks-from-pr: 2921
 #  - GCC-12.2.0.eb
   - OpenSSL-1.1.eb:
       options:
