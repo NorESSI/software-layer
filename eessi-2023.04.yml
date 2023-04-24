@@ -1,6 +1,4 @@
 easyconfigs:
-#  - GCC-10.3.0.eb
-#  - GCC-9.3.0.eb
   - GCC-10.3.0.eb:
       options:
         include-easyblocks-from-pr: 2921
