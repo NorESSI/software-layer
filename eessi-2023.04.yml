@@ -17,4 +17,6 @@ easyconfigs:
   - OpenBLAS-0.3.15-GCC-10.3.0.eb:
       options:
         from-pr: 17924
-  - TensorFlow-2.6.0-foss-2021a.eb
+  - TensorFlow-2.6.0-foss-2021a.eb:
+      options:
+        include-easyblocks-from-pr: 2218  
