@@ -17,3 +17,5 @@ easyconfigs:
   - OpenBLAS-0.3.15-GCC-10.3.0.eb:
       options:
         from-pr: 17924
+  - IPython-7.25.0-GCCcore-10.3.0.eb
+  - WRF-4.3-foss-2021a-dmpar.eb
