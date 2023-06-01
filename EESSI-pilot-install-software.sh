@@ -139,7 +139,7 @@ fi
 
 echo "EESSI_CVMFS_REPO=${EESSI_CVMFS_REPO}"
 
-REQ_EB_VERSION='4.7.1'
+REQ_EB_VERSION='4.7.2'
 echo "REQ_EB_VERSION=${REQ_EB_VERSION}"
 module avail 2>&1 | grep -i easybuild
 
