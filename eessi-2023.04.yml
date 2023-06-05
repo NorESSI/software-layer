@@ -3,8 +3,13 @@ easyconfigs:
   - GCC-10.3.0.eb:
       options:
         include-easyblocks-from-pr: 2921
-#  - GCC-11.3.0.eb
-#  - GCC-12.2.0.eb
+# use Bart Oldeman's update to PR#2921, see https://github.com/trz42/easybuild-easyblocks/pull/1
+#  - GCC-11.3.0.eb:
+#      options:
+#        include-easyblocks-from-pr: 2921
+  - GCC-12.2.0.eb:
+      options:
+        include-easyblocks-from-pr: 2921
   - OpenSSL-1.1.eb:
       options:
         include-easyblocks-from-pr: 2922
