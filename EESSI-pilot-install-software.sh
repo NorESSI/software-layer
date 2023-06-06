@@ -224,7 +224,13 @@ if [[ $GENERIC -eq 1 ]]; then
     $EB --include-easyblocks-from-pr 1946  OpenBLAS-0.3.15-GCC-10.3.0.eb --robot --from-pr 17924
     check_exit_code $? "${ok_msg}" "${fail_msg}"
 fi
-
+echo "**************************************"
+echo "These are the environemntal variables:"
+env
+echo "***************************************"
+echo "Now is the  EasyBuild config:"
+eb --show-config
+echo "***************************************"
 eb_install_easystack_out=${TMPDIR}/eb_install_easystack.out
 ${EB:-eb} --robot --easystack eessi-${EESSI_PILOT_VERSION}.yml --experimental | tee ${eb_install_easystack_out}
 
