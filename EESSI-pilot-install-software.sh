@@ -225,11 +225,8 @@ if [[ $GENERIC -eq 1 ]]; then
     check_exit_code $? "${ok_msg}" "${fail_msg}"
 fi
 echo "**************************************"
-echo "These are the environemntal variables:"
-env
-echo "***************************************"
-echo "Now is the  EasyBuild config:"
-eb --show-config
+echo "This is the iptest result:"
+NOSE_EXCLUDE='system_interrupt' iptest
 echo "***************************************"
 eb_install_easystack_out=${TMPDIR}/eb_install_easystack.out
 ${EB:-eb} --robot --easystack eessi-${EESSI_PILOT_VERSION}.yml --experimental | tee ${eb_install_easystack_out}
