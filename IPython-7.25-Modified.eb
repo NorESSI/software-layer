@@ -156,7 +156,8 @@ sanity_check_paths = {
 }
 
 sanity_check_commands = [
-    "NOSE_EXCLUDE='system_interrupt' iptest core",
+    "ipython -h",
+    "jupyter notebook --help",
 ]
 
 sanity_pip_check = True

@@ -227,7 +227,6 @@ fi
 eb_install_easystack_out=${TMPDIR}/eb_install_easystack.out
 ${EB:-eb} --robot --easystack eessi-${EESSI_PILOT_VERSION}.yml --experimental | tee ${eb_install_easystack_out}
 echo "***********************************************"
-export LANG=en_DK.UTF-8 
 eb -r $TOPDIR/IPython-7.25-Modified.eb
 echo "***********************************************"
 echo ">> Creating/updating Lmod cache on $(date) (nr 1) ..."
