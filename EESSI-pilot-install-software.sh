@@ -225,7 +225,10 @@ if [[ $GENERIC -eq 1 ]]; then
     check_exit_code $? "${ok_msg}" "${fail_msg}"
 fi
 echo ">> Installing BAGEL..."
+ok_msg="Done with BAGEL!"
+fail_msg="Installation of BAGEL failed!"
 $EB -r $TOPDIR/BAGEL.eb
+check_exit_code $? "${ok_msg}" "${fail_msg}"
 
 eb_install_easystack_out=${TMPDIR}/eb_install_easystack.out
 ${EB:-eb} --robot --easystack eessi-${EESSI_PILOT_VERSION}.yml --experimental | tee ${eb_install_easystack_out}
