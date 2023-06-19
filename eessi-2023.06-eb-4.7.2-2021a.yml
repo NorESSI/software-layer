@@ -3,4 +3,5 @@ easyconfigs:
       options:
         include-easyblocks-from-pr: 2922
   - GCC-10.3.0.eb
+  - foss-2021a.eb
 
