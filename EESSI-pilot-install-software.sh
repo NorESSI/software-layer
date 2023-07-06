@@ -160,7 +160,11 @@ for eb_version in '4.7.2'; do
 done
 
 ### add packages here
+#########
+export LANG=en_DK.UTF-8
 
+eb -r Python-2.7.18-GCCcore-10.3.0-bare.eb
+#####################
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
@@ -172,3 +176,5 @@ $TOPDIR/update_lmod_cache.sh ${EPREFIX} ${EASYBUILD_INSTALLPATH}
 
 echo ">> Cleaning up ${TMPDIR}..."
 rm -r ${TMPDIR}
+
+

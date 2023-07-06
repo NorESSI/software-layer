@@ -11,4 +11,4 @@ easyconfigs:
   - Rust-1.52.1-GCCcore-10.3.0.eb
   - foss-2021a.eb
   - QuantumESPRESSO-6.7-foss-2021a.eb
-  - Python-2.7.18-GCCcore-10.3.0-bare.eb
+  #- Python-2.7.18-GCCcore-10.3.0-bare.eb
