@@ -160,9 +160,9 @@ for eb_version in '4.7.2'; do
 done
 
 ### add packages here
-#########
-export LANG=en_DK.UTF-8
-
+echo"#########"
+echo "EXPORTING THE LANG"
+export LANG=C.UTF-8
 eb -r Python-2.7.18-GCCcore-10.3.0-bare.eb
 #####################
 echo ">> Creating/updating Lmod cache..."
