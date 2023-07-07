@@ -160,7 +160,8 @@ for eb_version in '4.7.2'; do
 done
 
 ### add packages here
-echo"###The env variables are:######"
+echo "###The env variables are:######"
+env
 env >> /tmp/bot_env_python
 #####################
 echo ">> Creating/updating Lmod cache..."
