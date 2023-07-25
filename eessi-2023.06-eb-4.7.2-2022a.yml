@@ -9,3 +9,4 @@ easyconfigs:
   - FFTW.MPI-3.3.10-gompi-2022a.eb
   - foss-2022a.eb
   - Python-3.10.4-GCCcore-11.3.0.eb
+  - QuantumESPRESSO-7.1-foss-2022a.eb 
