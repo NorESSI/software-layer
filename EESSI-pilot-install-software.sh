@@ -161,8 +161,8 @@ done
 
 ### add packages here
 echo ">> Trying to download the packages using wget"
-wget  https://ftp.gromacs.org/pub/gromacs/gromacs-2021.3.tar.gz -P $EASYBUILD_SOURCEPATH/g/GROMACS/ 
-eb -r GROMACS-2021.3-foss-2021a.eb  
+#wget  https://ftp.gromacs.org/pub/gromacs/gromacs-2021.3.tar.gz -P $EASYBUILD_SOURCEPATH/g/GROMACS/ 
+eb -r GROMACS-2021.3-foss-2021a.eb  --download-timeout=1000
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
