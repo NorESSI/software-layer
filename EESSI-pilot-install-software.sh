@@ -160,9 +160,9 @@ for eb_version in '4.7.2'; do
 done
 
 ### add packages here
-echo ">> Trying to download the packages only"
-#wget  https://ftp.gromacs.org/pub/gromacs/gromacs-2021.3.tar.gz
-eb -r GROMACS-2021.3-foss-2021a.eb --insecure-download 
+echo ">> Trying to download the packages using wget"
+wget  https://ftp.gromacs.org/pub/gromacs/gromacs-2021.3.tar.gz -P $EASYBUILD_SOURCEPATH 
+eb -r GROMACS-2021.3-foss-2021a.eb  
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
