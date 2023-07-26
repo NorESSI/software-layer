@@ -1,0 +1,36 @@
+
+
+easyblock = 'ConfigureMake'
+name = 'netCDF'
+version = '4.8.0'
+
+homepage = 'https://www.unidata.ucar.edu/software/netcdf/'
+description = """NetCDF (network Common Data Form) is a set of software libraries
+ and machine-independent data formats that support the creation, access, and sharing of array-oriented
+ scientific data."""
+
+toolchain = {'name': 'gompi', 'version': '2021a'}
+toolchainopts = {'pic': True, 'usempi': True}
+
+source_urls = ['https://github.com/Unidata/netcdf-c/archive/']
+sources = ['v%(version)s.tar.gz']
+checksums = ['aff58f02b1c3e91dc68f989746f652fe51ff39e6270764e484920cb8db5ad092']
+
+builddependencies = [
+    ('Autotools', '20210128'),
+    ('CMake', '3.20.1'),
+    ('Doxygen', '1.9.1'),
+]
+
+dependencies = [
+    ('HDF5', '1.10.7'),
+    ('cURL', '7.76.0'),
+    ('zlib', '1.2.11'),
+]
+
+
+# make sure both static and shared libs are built
+preconfigopts = 'CC=mpicc'
+configopts = ' --enable-erange-fill --enable-nczarr --enable-mmap --enable-byte-range --enable-extra-example-tests --enable-parallel-tests --enable-dap '
+
+moduleclass = 'data'
