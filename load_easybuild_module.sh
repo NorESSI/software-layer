@@ -23,14 +23,14 @@ fi
 EB_VERSION=${1}
 
 # make sure that environment variables that we expect to be set are indeed set
-if [ -z "${TMPDIR}" ]; then
+if [ -z "${TMPDIR}" ]; then 
     echo "\$TMPDIR is not set" >&2
     exit 2
 fi
 
 # ${EB} is used to specify which 'eb' command should be used;
 # can potentially be more than just 'eb', for example when using 'eb --optarch=GENERIC'
-if [ -z "${EB}" ]; then
+if [ -z "${EB}" ]; then 
     echo "\$EB is not set" >&2
     exit 2
 fi

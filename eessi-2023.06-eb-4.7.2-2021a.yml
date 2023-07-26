@@ -1,11 +1,14 @@
 easyconfigs:
-  - OpenSSL-1.1.eb:
-      options:
-        include-easyblocks-from-pr: 2922
-  - GCC-10.3.0.eb
-  - CMake-3.20.1-GCCcore-10.3.0.eb:
-      options:
-        include-easyblocks-from-pr: 2248
+  - OpenSSL-1.1.eb
+  # - OpenSSL-1.1.eb:
+  #     options:
+  #       include-easyblocks-from-pr: 2922
+  - GCC-10.3.0
+  - CMake-3.20.1-GCCcore-10.3.0.eb
+  # - CMake-3.20.1-GCCcore-10.3.0.eb:
+  #     options:
+  #       include-easyblocks-from-pr: 2248
   - Rust-1.52.1-GCCcore-10.3.0.eb
   - foss-2021a.eb
+  - QuantumESPRESSO-6.7-foss-2021a.eb
   - GROMACS-2021.3-foss-2021a.eb

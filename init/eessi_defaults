@@ -8,5 +8,5 @@
 # license: GPLv2
 #
 
-export EESSI_CVMFS_REPO="${EESSI_CVMFS_REPO_OVERRIDE:=/cvmfs/pilot.eessi-hpc.org}"
+export EESSI_CVMFS_REPO="${EESSI_CVMFS_REPO_OVERRIDE:=/cvmfs/pilot.nessi.no}"
 export EESSI_PILOT_VERSION="${EESSI_PILOT_VERSION_OVERRIDE:=2023.06}"

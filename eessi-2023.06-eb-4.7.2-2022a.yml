@@ -1,0 +1,11 @@
+easyconfigs:
+  - GCC-11.3.0
+  - CMake-3.23.1-GCCcore-11.3.0.eb
+  # - CMake-3.23.1-GCCcore-11.3.0.eb:
+  #     options:
+  #       include-easyblocks-from-pr: 2248
+  - BLIS-0.9.0-GCC-11.3.0.eb
+  - OpenMPI-4.1.4-GCC-11.3.0.eb
+  - FFTW.MPI-3.3.10-gompi-2022a.eb
+  - foss-2022a.eb
+  - Python-3.10.4-GCCcore-11.3.0.eb
