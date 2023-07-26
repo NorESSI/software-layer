@@ -160,7 +160,8 @@ for eb_version in '4.7.2'; do
 done
 
 ### add packages here
-
+echo ">> Trying to download the packages only"
+eb --fetch GROMACS-2021.3-foss-2021a.eb 
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
