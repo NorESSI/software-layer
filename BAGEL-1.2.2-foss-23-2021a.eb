@@ -28,7 +28,7 @@ dependencies = [
     ('libxc', '5.1.5'),
 ]
 
-preconfigopts += './autogen.sh && '
+preconfigopts = './autogen.sh && '
 preconfigopts += 'CXXFLAGS="$CXXFLAGS -DNDEBUG " '
 preconfigopts += 'CXXFLAGS="$CXXFLAGS -lflexiblas " '
 configopts = ' --with-boost=$BOOST_ROOT   --with-libxc --with-mpi=openmpi '
