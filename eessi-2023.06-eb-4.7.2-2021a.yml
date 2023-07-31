@@ -14,3 +14,4 @@ easyconfigs:
   - GROMACS-2021.3-foss-2021a.eb:  
         options:
           download-timeout: 1000
+  - BAGEL-1.2.2-foss-23-2021a.eb
