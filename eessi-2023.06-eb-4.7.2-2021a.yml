@@ -14,3 +14,4 @@ easyconfigs:
   - GROMACS-2021.3-foss-2021a.eb:  
         options:
           download-timeout: 1000
+  - netCDF-4.8.0-gompi-2021a.eb 
