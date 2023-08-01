@@ -44,7 +44,7 @@ dependencies = [
 
 with_configure = True
 configopts = '--enable-hdf5-par-io --enable-mpi --enable-open-mp '
-#configopts += '--enable-msgs-comps --enable-time-profile --enable-memory-profile '
+configopts += '--enable-msgs-comps --enable-time-profile --enable-memory-profile '
 configopts += '--enable-time-profile '
 configopts += '--with-blas-libs="-lflexiblas" '
 configopts += '--with-lapack-libs="-lflexiblas" '
@@ -53,8 +53,8 @@ configopts += '--with-netcdf-path="$EBROOTNETCDF" '
 configopts += '--with-netcdff-path="$EBROOTNETCDFMINFORTRAN" '
 configopts += '--with-hdf5-path="$EBROOTHDF5" '
 configopts += '--with-libxc-path="$EBROOTLIBXC" '
-configopts += 'CPP="x86_64-pc-linux-gnu-gcc -E" '
-configopts += 'CPPFLAGS="-P" '
+#configopts += 'CPP="x86_64-pc-linux-gnu-gcc -E" '
+#configopts += 'CPPFLAGS="-P" '
 parallel = 4
 buildopts = 'all'
 cleanupoldinstall = False
