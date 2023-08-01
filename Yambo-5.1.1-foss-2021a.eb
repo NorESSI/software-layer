@@ -44,7 +44,8 @@ dependencies = [
 
 with_configure = True
 configopts = '--enable-hdf5-par-io --enable-mpi --enable-open-mp '
-configopts += '--enable-msgs-comps --enable-time-profile --enable-memory-profile '
+#configopts += '--enable-msgs-comps --enable-time-profile --enable-memory-profile '
+configopts += '--enable-time-profile '
 configopts += '--with-blas-libs="-lflexiblas" '
 configopts += '--with-lapack-libs="-lflexiblas" '
 configopts += '--with-fft-path="$EBROOTFFTW" '
