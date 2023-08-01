@@ -14,3 +14,4 @@ easyconfigs:
   - GROMACS-2021.3-foss-2021a.eb:  
         options:
           download-timeout: 1000
+  - Yambo-5.1.1-foss-2021a.eb
