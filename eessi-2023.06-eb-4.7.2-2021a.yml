@@ -14,4 +14,8 @@ easyconfigs:
   - GROMACS-2021.3-foss-2021a.eb:  
         options:
           download-timeout: 1000
-  - BAGEL-1.2.2-foss-23-2021a.eb
+  - libGLU-9.0.1-GCCcore-10.3.0.eb
+  - BAGEL-1.2.2-foss-2021a.eb:
+        options:
+          --from-pr: 18446
+ 
