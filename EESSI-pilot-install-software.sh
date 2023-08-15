@@ -5,7 +5,6 @@
 # see example parsing of command line arguments at
 #   https://wiki.bash-hackers.org/scripting/posparams#using_a_while_loop
 #   https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
-export LANG=en_DK.UTF-8
 display_help() {
   echo "usage: $0 [OPTIONS]"
   echo "  -g | --generic         -  instructs script to build for generic architecture target"
@@ -160,8 +159,7 @@ for eb_version in '4.7.2'; do
 done
 
 ### add packages here
-eb -r Python-2.7.18-GCCcore-10.3.0-bare.eb
-#####################
+
 echo ">> Creating/updating Lmod cache..."
 export LMOD_RC="${EASYBUILD_INSTALLPATH}/.lmod/lmodrc.lua"
 if [ ! -f $LMOD_RC ]; then
