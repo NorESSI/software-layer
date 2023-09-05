@@ -15,3 +15,4 @@ easyconfigs:
         options:
           download-timeout: 1000
   - libGLU-9.0.1-GCCcore-10.3.0.eb
+  - Arrow-6.0.0-foss-2021a.eb
