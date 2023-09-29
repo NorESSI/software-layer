@@ -9,3 +9,6 @@ easyconfigs:
   - FFTW.MPI-3.3.10-gompi-2022a.eb
   - foss-2022a.eb
   - Python-3.10.4-GCCcore-11.3.0.eb
+  - impi-2021.6.0-intel-compilers-2022.1.0.eb:
+        options: 
+          accept-eula-for: Intel-oneAPI 
