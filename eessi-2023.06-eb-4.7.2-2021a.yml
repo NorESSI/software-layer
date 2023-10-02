@@ -15,4 +15,7 @@ easyconfigs:
         options:
           download-timeout: 1000
   - libGLU-9.0.1-GCCcore-10.3.0.eb
+  - BAGEL-1.2.2-foss-2021a.eb:
+        options:
+          from-pr: 18446
   - Yambo-5.1.1-foss-2021a.eb
