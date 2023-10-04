@@ -1,5 +1,6 @@
 easyconfigs:
   - GCC-12.2.0
+  - git-2.38.1-GCCcore-12.2.0-nodocs.eb
   - CMake-3.24.3-GCCcore-12.2.0.eb
   # - CMake-3.24.3-GCCcore-12.2.0.eb:
   #     options:
