@@ -55,3 +55,4 @@ easyconfigs:
       # Uses a custom hook since has zlib as dependency which has hard coded header and library path within Pillow code.
       options:
         from-pr: 18881
+  - SRA-Toolkit-3.0.3-gompi-2022a.eb
