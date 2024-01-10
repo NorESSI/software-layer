@@ -8,6 +8,10 @@ easyconfigs:
   - gzip-1.12-GCCcore-11.3.0.eb
   - lz4-1.9.3-GCCcore-11.3.0.eb
   - zstd-1.5.2-GCCcore-11.3.0.eb
+  - Pillow-9.1.1-GCCcore-11.3.0.eb:
+      # avoid that hardcoded paths like /usr/include are used in build commands
+        options:
+          from-pr: 18881  
   - Boost.Python-1.79.0-GCC-11.3.0.eb
   - netCDF-4.9.0-gompi-2022a.eb:
       # use updated CMakeMake easyblock to avoid that -DCMAKE_SKIP_RPATH=ON is used, which breaks the netCDF test step
@@ -55,4 +59,8 @@ easyconfigs:
       # Uses a custom hook since has zlib as dependency which has hard coded header and library path within Pillow code.
       options:
         from-pr: 18881
+  - ParaView-5.10.1-foss-2022a-mpi.eb:
+        options:
+          download-timeout: 1000
+  - ASE-3.22.1-foss-2022a.eb
   - SRA-Toolkit-3.0.3-gompi-2022a.eb

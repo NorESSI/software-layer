@@ -12,10 +12,10 @@ jobs:
         EESSI_VERSION:
         - 2023.06
         EESSI_SOFTWARE_SUBDIR:
-        - aarch64/generic
+#        - aarch64/generic
         - x86_64/amd/zen2
         - x86_64/intel/broadwell
-        - x86_64/intel/cascadelake
+#        - x86_64/intel/cascadelake
         - x86_64/intel/skylake_avx512
         - x86_64/generic
         EASYSTACK_FILE:

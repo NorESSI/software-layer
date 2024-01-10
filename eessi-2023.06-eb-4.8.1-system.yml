@@ -1,3 +1,6 @@
 easyconfigs:
   # wraps around Java/11.0.20
   - Java-11.eb
+  - EasyBuild-4.8.2.eb:
+      options:
+        from-pr: 19105
