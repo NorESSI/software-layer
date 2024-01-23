@@ -30,8 +30,8 @@
 # -. initial settings & exit codes
 TOPDIR=$(dirname $(realpath $0))
 
-source ${TOPDIR}/scripts/utils.sh
-source ${TOPDIR}/scripts/cfg_files.sh
+source "${TOPDIR}"/scripts/utils.sh
+source "${TOPDIR}"/scripts/cfg_files.sh
 
 # exit codes: bitwise shift codes to allow for combination of exit codes
 # ANY_ERROR_EXITCODE is sourced from ${TOPDIR}/scripts/utils.sh
@@ -83,7 +83,7 @@ display_help() {
   echo "                           MODE==run (run a script or command) [default: shell]"
   echo "  -n | --nvidia MODE     - configure the container to work with NVIDIA GPUs,"
   echo "                           MODE==install for a CUDA installation, MODE==run to"
-  echo "                           attach a GPU, MODE==all for both [default: false]"  
+  echo "                           attach a GPU, MODE==all for both [default: false]"
   echo "  -r | --repository CFG  - configuration file or identifier defining the"
   echo "                           repository to use [default: EESSI via"
   echo "                           default container, see --container]"
@@ -164,7 +164,7 @@ while [[ $# -gt 0 ]]; do
       SETUP_NVIDIA=1
       NVIDIA_MODE="$2"
       shift 2
-      ;;    
+      ;;
     -r|--repository)
       REPOSITORY="$2"
       shift 2
@@ -575,7 +575,7 @@ fi
 declare -a EESSI_FUSE_MOUNTS=()
 
 # always mount cvmfs-config repo (to get access to software.eessi.io)
-# EESSI_FUSE_MOUNTS+=("--fusemount" "container:cvmfs2 cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch")
+# Commented out intentionally EESSI_FUSE_MOUNTS+=("--fusemount" "container:cvmfs2 cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch")
 
 if [[ "${ACCESS}" == "ro" ]]; then
   export EESSI_READONLY="container:cvmfs2 ${repo_name} /cvmfs/${repo_name}"

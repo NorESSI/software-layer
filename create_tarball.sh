@@ -43,7 +43,7 @@ module_files_list=${tmpdir}/module_files.list.txt
 if [ -d ${eessi_version}/software/${os}/${cpu_arch_subdir}/.lmod ]; then
     # include Lmod cache and configuration file (lmodrc.lua),
     # skip whiteout files and backup copies of Lmod cache (spiderT.old.*)
-    find ${eessi_version}/software/${os}/${cpu_arch_subdir}/.lmod -type f | egrep -v '/\.wh\.|spiderT.old' > ${files_list}
+    find ${eessi_version}/software/${os}/${cpu_arch_subdir}/.lmod -type f | egrep -v '/\.wh\.|spiderT.old' >> ${files_list}
 fi
 
 # include scripts that were copied by install_scripts.sh, which we want to ship in EESSI repository

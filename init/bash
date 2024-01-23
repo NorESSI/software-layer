@@ -5,6 +5,7 @@ function show_msg {
     echo "$msg"
   fi
 }
+
 # The following method should be safe, but might break if file is a symlink
 # (could switch to $(dirname "$(readlink -f "$BASH_SOURCE")") in that case)
 source $(dirname "$BASH_SOURCE")/eessi_environment_variables
@@ -23,7 +24,7 @@ if [ $? -eq 0 ]; then
     source $EESSI_EPREFIX/usr/share/Lmod/init/bash
 
     # prepend location of modules for EESSI software stack to $MODULEPATH
-    echo "Prepending $EESSI_MODULEPATH to \$MODULEPATH..." >> $output
+    show_msg "Prepending $EESSI_MODULEPATH to \$MODULEPATH..."
     module use $EESSI_MODULEPATH
 
     #show_msg ""

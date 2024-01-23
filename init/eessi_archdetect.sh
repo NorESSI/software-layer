@@ -70,7 +70,7 @@ check_allinfirst(){
 cpupath(){
     # If EESSI_SOFTWARE_SUBDIR_OVERRIDE is set, use it
     log "DEBUG" "cpupath: Override variable set as '$EESSI_SOFTWARE_SUBDIR_OVERRIDE' "
-    [ $EESI_SOFTWARE_SUBDIR_OVERRIDE ] && echo ${EESSI_SOFTWARE_SUBDIR_OVERRIDE} && exit
+    [ $EESSI_SOFTWARE_SUBDIR_OVERRIDE ] && echo ${EESSI_SOFTWARE_SUBDIR_OVERRIDE} && exit
 
     # Identify the best matching CPU architecture from a list of supported specifications for the host CPU
     # Return the path to the installation files in NESSI of the best matching architecture
@@ -118,7 +118,7 @@ cpupath(){
             # each flag in this CPU specification must be found in the list of flags of the host
             check_allinfirst "${cpu_flags[*]}" ${arch_spec[2]} && best_arch_match=${arch_spec[0]} && \
                 all_arch_matches="$best_arch_match:$all_arch_matches" && \
-                log "DEBUG" "cpupath: host CPU best match updated to $best_arch_match"
+                log "DEBUG" "cpupath: host CPU best match updated to $best_arch_match" 
         fi
     done
   

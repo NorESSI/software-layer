@@ -2,17 +2,17 @@
 # $BASH_SOURCE points to correct path, see also http://mywiki.wooledge.org/BashFAQ/028
 EESSI_INIT_DIR_PATH=$(dirname $(realpath $BASH_SOURCE))
 
+function error() {
+    echo -e "\e[31mERROR: $1\e[0m" >&2
+    false
+}
+
 function show_msg {
   # only echo msg if EESSI_SILENT is unset
   msg=$1
   if [[ ! -v EESSI_SILENT ]]; then
     echo "$msg"
   fi
-}
-
-function error() {
-    echo -e "\e[31mERROR: $1\e[0m" >&2
-    false
 }
 
 # set up minimal environment: $EESSI_PREFIX, $EESSI_VERSION, $EESSI_OS_TYPE, $EESSI_CPU_FAMILY, $EPREFIX
