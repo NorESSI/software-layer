@@ -9,16 +9,17 @@ jobs:
     strategy:
       matrix:
         proc_cpuinfo:
-          - x86_64/intel/haswell/archspec-linux-E5-2680-v3
+          - x86_64/intel/broadwell/archspec-linux-E5-2683-v4
           - x86_64/intel/skylake_avx512/archspec-linux-6132
           - x86_64/amd/zen2/Azure-CentOS7-7V12
-          - x86_64/amd/zen3/Azure-CentOS7-7V73X
           # commented out since these targets are currently not supported in pilot.nessi.no repo
           # (and some tests assume that the corresponding subdirectory in software layer is there)
-          # - ppc64le/power9le/unknown-power9le
           # - aarch64/neoverse-n1/Azure-Ubuntu20-Altra
           # - aarch64/neoverse-n1/AWS-awslinux-graviton2
           # - aarch64/neoverse-v1/AWS-awslinux-graviton3
+          # - ppc64le/power9le/unknown-power9le
+          # - x86_64/intel/haswell/archspec-linux-E5-2680-v3
+          # - x86_64/amd/zen3/Azure-CentOS7-7V73X
       fail-fast: false
     steps:
     - name: checkout
@@ -62,7 +63,7 @@ jobs:
               echo "Test for ${{matrix.proc_cpuinfo}} FAILED: $CPU_ARCHES" >&2
               exit 1
           fi
-          # Check all those architectures actually exist (if this EESSI version has been populated already)
+          # Check all those architectures actually exist (if this NESSI version has been populated already)
           if [ -d ${EESSI_PREFIX}/software/linux ]; then
             for dir in $(echo "$CPU_ARCHES" | tr ':' '\n'); do
                 # Search all EESSI versions as we may drop support at some point
