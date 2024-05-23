@@ -23,3 +23,7 @@ easyconfigs:
       options:
         from-pr: 20439
   - GDB-13.2-GCCcore-13.2.0.eb
+  - Perl-bundle-CPAN-5.38.0-GCCcore-13.2.0.eb:
+      options:
+        # see https://github.com/easybuilders/easybuild-easyconfigs/pull/20540
+        from-pr: 20540
