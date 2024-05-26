@@ -5,3 +5,4 @@ easyconfigs:
   - WRF-4.4.1-foss-2022b-dmpar.eb
   - bokeh-3.2.1-foss-2022b.eb
   - MDAnalysis-2.4.2-foss-2022b.eb
+  - prokka-1.14.5-gompi-2022b.eb
