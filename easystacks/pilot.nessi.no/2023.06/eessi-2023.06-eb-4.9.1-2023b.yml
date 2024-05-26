@@ -23,3 +23,4 @@ easyconfigs:
       options:
         from-pr: 20439
   - GDB-13.2-GCCcore-13.2.0.eb
+  - netCDF-Fortran-4.6.1-gompi-2023b.eb
