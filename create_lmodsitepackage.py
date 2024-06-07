@@ -120,6 +120,7 @@ local function eessi_cuda_and_libraries_enabled_load_hook(t)
         -- simpleName is a module in packagesList
         -- get the full host_injections path
         local hostInjections = string.gsub(os.getenv('EESSI_SOFTWARE_PATH') or "", 'versions', 'host_injections')
+
         -- build final path where the software should be installed
         local packageEasyBuildDir = hostInjections .. "/software/" .. t.modFullName .. "/easybuild"
         local packageDirExists = isDir(packageEasyBuildDir)
