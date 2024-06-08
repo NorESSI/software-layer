@@ -55,3 +55,45 @@ easyconfigs:
   - PyTorch-2.1.2-foss-2023a-CUDA-12.1.1.eb:
       options:
         cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  # dependencies for PyTorch-bundle-2.1.2-foss-2023a-CUDA-12.1.1.eb
+  - librosa-0.10.1-foss-2023a.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - NLTK-3.8.1-foss-2023a.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - parameterized-0.9.0-GCCcore-12.3.0.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - Scalene-1.5.26-GCCcore-12.3.0.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - scikit-image-0.22.0-foss-2023a.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - SentencePiece-0.2.0-GCC-12.3.0.eb:
+      # see https://github.com/easybuilders/easybuild-easyconfigs/pull/19987
+      options:
+        from-pr: 19987
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - libmad-0.15.1b-GCCcore-12.3.0.eb:
+      # see https://github.com/easybuilders/easybuild-easyconfigs/pull/19987
+       options:
+        from-pr: 19987
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - SoX-14.4.2-GCCcore-12.3.0.eb:
+      # see https://github.com/easybuilders/easybuild-easyconfigs/pull/19987
+      options:
+        from-pr: 19987
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - tensorboard-2.15.1-gfbf-2023a.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  - tqdm-4.66.1-GCCcore-12.3.0.eb:
+      options:
+        cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0
+  #- PyTorch-bundle-2.1.2-foss-2023a-CUDA-12.1.1.eb:
+  #    # see https://github.com/easybuilders/easybuild-easyconfigs/pull/20484
+  #    options:
+  #      from-pr: 20484
+  #      cuda-compute-capabilities: 6.0,6.1,7.0,7.5,8.0,8.6,8.9,9.0

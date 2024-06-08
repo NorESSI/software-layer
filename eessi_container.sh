@@ -477,6 +477,11 @@ if [[ ${SETUP_NVIDIA} -eq 1 ]]; then
         mkdir -p ${EESSI_USR_LOCAL_CUDA}
         BIND_PATHS="${BIND_PATHS},${EESSI_VAR_LOG}:/var/log,${EESSI_USR_LOCAL_CUDA}:/usr/local/cuda"
         [[ ${VERBOSE} -eq 1 ]] && echo "BIND_PATHS=${BIND_PATHS}"
+        if [[ "${NVIDIA_MODE}" == "install" ]] ; then
+            # No GPU so we need to "trick" Lmod to allow us to load CUDA modules even without a CUDA driver
+            # (this variable means EESSI_OVERRIDE_GPU_CHECK=1 will be set inside the container)
+            export SINGULARITYENV_EESSI_OVERRIDE_GPU_CHECK=1
+        fi
     fi
 fi
 

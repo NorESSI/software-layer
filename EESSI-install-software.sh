@@ -17,11 +17,6 @@ display_help() {
   echo "  --skip-cuda-install    -  disable installing a full CUDA SDK in the host_injections prefix (e.g. in CI)"
 }
 
-# Function to check if a command exists
-function command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
 function copy_build_log() {
     # copy specified build log to specified directory, with some context added
     build_log=${1}
@@ -159,8 +154,13 @@ fi
 #   are:
 #     - .lmod/lmodrc.lua
 #     - .lmod/SitePackage.lua
+#
 # We run scripts to create them if they don't exist or if the scripts have been
 # changed in the PR.
+#
+# (TODO do we need to change the path if we have sub-directories for
+# accelerators? And would we need different scripts for creating lua files under
+# different directories?)
 
 # Set base directory for software and for Lmod config files
 _eessi_software_path=${EESSI_PREFIX}/software/${EESSI_OS_TYPE}/${EESSI_SOFTWARE_SUBDIR_OVERRIDE}
@@ -255,6 +255,12 @@ if command_exists "nvidia-smi"; then
     echo "Command 'nvidia-smi' found. Installing NVIDIA drivers for use in prefix shell..."
     ${EESSI_PREFIX}/scripts/gpu_support/nvidia/link_nvidia_host_libraries.sh
 fi
+
+# Install extra software that is needed (e.g., for providing a custom ctypes
+# library when needed)
+cd ${TOPDIR}/scripts/extra
+./install_extra_packages.sh --temp-dir /tmp/temp --easystack eessi-2023.06-extra-packages.yml
+cd ${TOPDIR}
 
 # use PR patch file to determine in which easystack files stuff was added
 changed_easystacks=$(cat ${pr_diff} | grep '^+++' | cut -f2 -d' ' | sed 's@^[a-z]/@@g' | grep '^easystacks/.*yml$' | egrep -v 'known-issues|missing') 
