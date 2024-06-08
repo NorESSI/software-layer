@@ -266,15 +266,69 @@ mkdir -p ${TARBALL_TMP_BUILD_STEP_DIR}
 BUILD_STEP_ARGS+=("--save" "${TARBALL_TMP_BUILD_STEP_DIR}")
 BUILD_STEP_ARGS+=("--storage" "${STORAGE}")
 # add options required to handle NVIDIA support
-BUILD_STEP_ARGS+=("--nvidia" "all")
+if command_exists "nvidia-smi"; then
+    echo "Command 'nvidia-smi' found, using available GPU"
+    BUILD_STEP_ARGS+=("--nvidia" "all")
+else
+    echo "No 'nvidia-smi' found, no available GPU but allowing overriding this check"
+    BUILD_STEP_ARGS+=("--nvidia" "install")
+fi
+# Retain location for host injections so we don't reinstall CUDA
+# (Always need to run the driver installation as available driver may change)
 if [[ ! -z ${SHARED_FS_PATH} ]]; then
     BUILD_STEP_ARGS+=("--host-injections" "${SHARED_FS_PATH}/host-injections")
 fi
 
-# Don't run the Lmod GPU driver check when doing builds (may not have a GPU, and it's not relevant for vanilla builds anyway)
-echo "EESSI_OVERRIDE_GPU_CHECK='${EESSI_OVERRIDE_GPU_CHECK}'"
-export EESSI_OVERRIDE_GPU_CHECK=1
-echo "EESSI_OVERRIDE_GPU_CHECK='${EESSI_OVERRIDE_GPU_CHECK}'"
+# replace some files using lower_dirs mechanism
+# - read replacements from replace_files.txt
+#   each line has the format __EESSI_SOFTWARE_PATH__/some_path relative_path
+#   /cvmfs/repo_name/versions/repo_version/software/os_type/software_dir/some_path
+# - for each replacement do
+#   - check if the target exists in the repository
+#   - create directory for replacement
+#   - copy target into directory
+rm -f ADD_LOWER_DIRS
+if [[ -f "replace_files.txt" ]]; then
+    LOWER_DIRS="${STORAGE}/lower_dirs"
+    mkdir -p "${LOWER_DIRS}"
+    echo "LOWER_DIRS: '${LOWER_DIRS}'"
+
+    repo_name=${EESSI_CVMFS_REPO_OVERRIDE}
+    repo_version=${EESSI_VERSION_OVERRIDE}
+    os_type=${EESSI_OS_TYPE}
+    software_subdir_override=${EESSI_SOFTWARE_SUBDIR_OVERRIDE}
+    software_path="/cvmfs/${repo_name}/versions/${repo_version}/software/${os_type}/${software_subdir_override}/software"
+
+    cat replace_files.txt | while read replace_spec; do
+        echo "replace_spec: '${replace_spec}'"
+        target=$(echo "${replace_spec}" | cut -f1 -d' ')
+        target_full_path=$(echo "${target}" | sed -e "s+__EESSI_SOFTWARE_PATH__+${software_path}+")
+        replace=$(echo "${replace_spec}" | cut -f2 -d' ')
+        echo "target: '${target}'"
+        echo "target_full_path: '${target_full_path}'"
+        echo "replace: '${replace}'"
+        if [[ -f ${replace} ]]; then
+            echo "replacement file exists"
+            target_lower_path=$(echo "${target_full_path}" | cut -f4- -d/)
+            echo "target_lower_path: '${target_lower_path}'"
+            target_lower_dir=$(dirname ${target_lower_path})
+            echo "target_lower_dir: '${target_lower_dir}'"
+            mkdir -p ${LOWER_DIRS}/${target_lower_dir}
+            cp -a ${replace} ${LOWER_DIRS}/${target_lower_dir}/.
+            ls -lisa ${LOWER_DIRS}/${target_lower_dir}
+            touch ADD_LOWER_DIRS
+        else
+            echo "replacement file does NOT exist; ignoring replacement"
+        fi
+    done
+fi
+echo "LOWER_DIRS: '${LOWER_DIRS}'"
+if [[ -f ADD_LOWER_DIRS ]]; then
+    BUILD_STEP_ARGS+=("--lower-dirs" "${LOWER_DIRS}")
+    echo "Added '--lower-dirs ${LOWER_DIRS}' to build step arguments"
+else
+    echo "Nothing to be added for LOWER_DIRS"
+fi
 
 # create tmp file for output of build step
 build_outerr=$(mktemp build.outerr.XXXX)
