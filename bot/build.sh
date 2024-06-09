@@ -276,9 +276,12 @@ fi
 # Retain location for host injections so we don't reinstall CUDA
 # (Always need to run the driver installation as available driver may change)
 
-if [[ ! -z ${SHARED_FS_PATH} ]]; then
-    BUILD_STEP_ARGS+=("--host-injections" "${SHARED_FS_PATH}/host-injections")
-fi
+# use $STORAGE for host-injections (maybe shared fs is not behaving well)
+mkdir -p ${STORAGE}/host_injections
+BUILD_STEP_ARGS+=("--host-injections" "${STORAGE}/host-injections")
+#if [[ ! -z ${SHARED_FS_PATH} ]]; then
+#    BUILD_STEP_ARGS+=("--host-injections" "${SHARED_FS_PATH}/host-injections")
+#fi
 
 # create tmp file for output of build step
 build_outerr=$(mktemp build.outerr.XXXX)

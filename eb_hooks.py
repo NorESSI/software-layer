@@ -5,8 +5,8 @@ import re
 
 import easybuild.tools.environment as env
 from easybuild.easyblocks.generic.configuremake import obtain_config_guess
-from easybuild.framework.easyconfig.constants import EASYCONFIG_CONSTANTS
 from easybuild.easyblocks.python import EXTS_FILTER_PYTHON_PACKAGES
+from easybuild.framework.easyconfig.constants import EASYCONFIG_CONSTANTS
 from easybuild.tools.build_log import EasyBuildError, print_msg
 from easybuild.tools.config import build_option, update_build_option
 from easybuild.tools.filetools import apply_regex_substitutions, copy_file, remove_file, symlink, which
