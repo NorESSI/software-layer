@@ -1,2 +1,3 @@
 easyconfigs:
   - grpcio-1.57.0-GCCcore-12.3.0.eb
+  - BCFtools-1.18-GCC-12.3.0.eb
