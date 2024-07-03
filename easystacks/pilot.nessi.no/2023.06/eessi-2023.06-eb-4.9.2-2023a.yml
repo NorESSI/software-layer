@@ -1,7 +1,7 @@
 easyconfigs:
   - grpcio-1.57.0-GCCcore-12.3.0.eb
   - BCFtools-1.18-GCC-12.3.0.eb
-  - BWA-0.7.17-GCCcore-12.3.0.eb
+  - BWA-0.7.18-GCCcore-12.3.0.eb
   - CapnProto-1.0.1-GCCcore-12.3.0.eb
   - DendroPy-4.6.1-GCCcore-12.3.0.eb
   - DIAMOND-2.1.8-GCC-12.3.0.eb
