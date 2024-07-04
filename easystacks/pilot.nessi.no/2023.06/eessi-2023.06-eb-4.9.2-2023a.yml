@@ -14,7 +14,6 @@ easyconfigs:
   - KronaTools-2.8.1-GCCcore-12.3.0.eb
   - LSD2-2.4.1-GCCcore-12.3.0.eb
   - MAFFT-7.520-GCC-12.3.0-with-extensions.eb
-  - MEGAHIT-1.2.9-GCCcore-12.3.0.eb
   - minimap2-2.26-GCCcore-12.3.0.eb
   - MMseqs2-14-7e284-gompi-2023a.eb
   - ncbi-vdb-3.0.10-gompi-2023a.eb
