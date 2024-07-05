@@ -10,7 +10,8 @@ easyconfigs:
   - HMMER-3.4-gompi-2023a.eb
   - IQ-TREE-2.3.5-gompi-2023a.eb:
       options:
-        from-pr: 20955
+        # see https://github.com/easybuilders/easybuild-easyconfigs/pull/20955
+        from-commit: 185f88b9a03d65a7fb74edc7acb4221e87e90784
   - KronaTools-2.8.1-GCCcore-12.3.0.eb
   - LSD2-2.4.1-GCCcore-12.3.0.eb
   - MAFFT-7.520-GCC-12.3.0-with-extensions.eb
