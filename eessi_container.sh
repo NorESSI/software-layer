@@ -194,7 +194,7 @@ while [[ $# -gt 0 ]]; do
       LOWER_DIRS="$2"
       shift 2
       ;; 
-   -r|--repository)
+    -r|--repository)
       REPOSITORIES+=("$2")
       shift 2
       ;;
