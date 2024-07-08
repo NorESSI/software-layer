@@ -17,3 +17,4 @@ easyconfigs:
   - MAFFT-7.520-GCC-12.3.0-with-extensions.eb
   - MMseqs2-14-7e284-gompi-2023a.eb
   - ncbi-vdb-3.0.10-gompi-2023a.eb
+  - phonopy-2.20.0-foss-2023a.eb
