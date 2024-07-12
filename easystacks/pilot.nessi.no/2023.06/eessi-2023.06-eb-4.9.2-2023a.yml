@@ -18,4 +18,5 @@ easyconfigs:
   - MMseqs2-14-7e284-gompi-2023a.eb
   - ncbi-vdb-3.0.10-gompi-2023a.eb
   - phonopy-2.20.0-foss-2023a.eb
+  - GPAW-24.1.0-foss-2023a.eb
   - DB_File-1.859-GCCcore-12.3.0.eb
