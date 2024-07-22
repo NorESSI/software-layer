@@ -769,7 +769,7 @@ do
           # need to convert ':' in LOWER_DIRS to ',' because bind mounts use ',' as
           # separator while the lowerdir overlayfs option uses ':'
           export BIND_PATHS="${BIND_PATHS},${LOWER_DIRS/:/,}"
-          EESSI_WRITABLE_OVERLAY+=" -o lowerdir=${LOWER_DIRS}:/cvmfs_ro/${repo_name}"
+          EESSI_WRITABLE_OVERLAY+=" -o lowerdir=${LOWER_DIRS}:/cvmfs_ro/${cvmfs_repo_name}"
         else
         EESSI_WRITABLE_OVERLAY+=" -o lowerdir=/cvmfs_ro/${cvmfs_repo_name}"
         fi
