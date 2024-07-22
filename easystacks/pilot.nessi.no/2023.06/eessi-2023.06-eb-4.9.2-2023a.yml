@@ -20,3 +20,4 @@ easyconfigs:
   - phonopy-2.20.0-foss-2023a.eb
   - GPAW-24.1.0-foss-2023a.eb
   - DB_File-1.859-GCCcore-12.3.0.eb
+  - MetalWalls-21.06.1-foss-2023a.eb
