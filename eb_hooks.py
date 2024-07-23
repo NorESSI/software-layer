@@ -384,6 +384,22 @@ def parse_hook_lammps_remove_deps_for_CI_aarch64(ec, *args, **kwargs):
         raise EasyBuildError("LAMMPS-specific hook triggered for non-LAMMPS easyconfig?!")
 
 
+def parse_hook_CP2K_remove_deps_for_aarch64(ec, *args, **kwargs):
+    """
+    Remove x86_64 specific dependencies for the CI and missing installations to pass on aarch64
+    """
+    if ec.name == 'CP2K' and ec.version in ('2023.1',):
+        if os.getenv('EESSI_CPU_FAMILY') == 'aarch64':
+            # LIBXSMM is not supported on ARM with GCC 12.2.0 and 12.3.0
+            # See https://www.cp2k.org/dev:compiler_support
+            # See https://github.com/easybuilders/easybuild-easyconfigs/pull/20951
+            # we need this hook because we check for missing installations for all CPU targets
+            # on an x86_64 VM in GitHub Actions (so condition based on ARCH in LAMMPS easyconfig is always true)
+            ec['dependencies'] = [dep for dep in ec['dependencies'] if dep[0] not in ('libxsmm',)]
+    else:
+        raise EasyBuildError("CP2K-specific hook triggered for non-CP2K easyconfig?!")
+
+
 def parse_hook_librosa_custom_ctypes(ec, *args, **kwargs):
     """
     Add exts_filter to soundfile extension in exts_list
@@ -951,6 +967,7 @@ PARSE_HOOKS = {
     'ImageMagick': parse_hook_imagemagick_add_dependency,
     'LAMMPS': parse_hook_lammps_remove_deps_for_CI_aarch64,
     'librosa': parse_hook_librosa_custom_ctypes,
+    'CP2K': parse_hook_CP2K_remove_deps_for_aarch64,
     'OpenBLAS': parse_hook_openblas_relax_lapack_tests_num_errors,
     'Pillow-SIMD' : parse_hook_Pillow_SIMD_harcoded_paths,
     'pybind11': parse_hook_pybind11_replace_catch2,

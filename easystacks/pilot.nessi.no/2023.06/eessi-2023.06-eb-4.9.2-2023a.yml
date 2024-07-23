@@ -21,3 +21,7 @@ easyconfigs:
   - GPAW-24.1.0-foss-2023a.eb
   - DB_File-1.859-GCCcore-12.3.0.eb
   - MetalWalls-21.06.1-foss-2023a.eb
+  - CP2K-2023.1-foss-2023a.eb:
+      options:
+        # see https://github.com/easybuilders/easybuild-easyconfigs/pull/20951
+        from-commit: a92667fe32396bbd4106243658625f7ff2adcd68
