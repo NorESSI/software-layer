@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#
 VERSION="1.1.0"
 
 # default log level: only emit warnings or errors
