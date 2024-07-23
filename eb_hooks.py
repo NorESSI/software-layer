@@ -450,6 +450,22 @@ def pre_configure_hook(self, *args, **kwargs):
         PRE_CONFIGURE_HOOKS[self.name](self, *args, **kwargs)
 
 
+def pre_configure_hook_gobject_introspection(self, *args, **kwargs):
+    """
+    pre-configure hook for GObject-Introspection:
+    - prevent GObject-Introspection from setting $LD_LIBRARY_PATH if EasyBuild is configured to filter it, see:
+      https://github.com/EESSI/software-layer/issues/196
+    """
+    if self.name == 'GObject-Introspection':
+        # inject a line that removes all items from runtime_path_envvar that are in $EASYBUILD_FILTER_ENVVARS
+        sed_cmd = r'sed -i "s@\(^\s*runtime_path_envvar = \)\(.*\)@'
+        sed_cmd += r'\1\2\n\1 [x for x in runtime_path_envvar if not x in os.environ.get(\'EASYBUILD_FILTER_ENV_VARS\', \'\').split(\',\')]@g"'
+        sed_cmd += ' %(start_dir)s/giscanner/ccompiler.py && '
+        self.cfg.update('preconfigopts', sed_cmd)
+    else:
+        raise EasyBuildError("GObject-Introspection-specific hook triggered for non-GObject-Introspection easyconfig?!")
+
+
 def pre_configure_hook_gromacs(self, *args, **kwargs):
     """
     Pre-configure hook for GROMACS:
@@ -552,21 +568,6 @@ def pre_configure_hook_wrf_aarch64(self, *args, **kwargs):
                     print_msg("Using custom preconfigopts for %s: %s", self.name, self.cfg['preconfigopts'])
     else:
         raise EasyBuildError("WRF-specific hook triggered for non-WRF easyconfig?!")
-
-
-def pre_configure_hook_atspi2core_filter_ld_library_path(self, *args, **kwargs):
-    """
-    pre-configure hook for at-spi2-core:
-    - instruct GObject-Introspection's g-ir-scanner tool to not set $LD_LIBRARY_PATH
-      when EasyBuild is configured to filter it, see:
-      https://github.com/EESSI/software-layer/issues/196
-    """
-    if self.name == 'at-spi2-core':
-        if build_option('filter_env_vars') and 'LD_LIBRARY_PATH' in build_option('filter_env_vars'):
-            sed_cmd = 'sed -i "s/gir_extra_args = \[/gir_extra_args = \[\\n  \'--lib-dirs-envvar=FILTER_LD_LIBRARY_PATH\',/g" %(start_dir)s/atspi/meson.build && '
-            self.cfg.update('preconfigopts', sed_cmd)
-    else:
-        raise EasyBuildError("at-spi2-core-specific hook triggered for non-at-spi2-core easyconfig?!")
 
 
 def pre_test_hook(self,*args, **kwargs):
@@ -968,13 +969,13 @@ POST_PREPARE_HOOKS = {
 }
 
 PRE_CONFIGURE_HOOKS = {
+    'GObject-Introspection': pre_configure_hook_gobject_introspection,
     'GROMACS': pre_configure_hook_gromacs,
     'libfabric': pre_configure_hook_libfabric_disable_psm3_x86_64_generic,
     'MetaBAT': pre_configure_hook_metabat_filtered_zlib_dep,
     'OpenBLAS': pre_configure_hook_openblas_optarch_generic,
     'PyTorch': pre_configure_hook_pytorch_add_cupti_libdir,
     'WRF': pre_configure_hook_wrf_aarch64,
-    'at-spi2-core': pre_configure_hook_atspi2core_filter_ld_library_path,
 }
 
 PRE_TEST_HOOKS = {
