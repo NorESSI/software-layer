@@ -64,10 +64,20 @@ else
     echo ">> Final installation in ${EASYBUILD_INSTALLPATH}..."
     export PATH=${EB_TMPDIR}/bin:${PATH}
     export PYTHONPATH=$(ls -d ${EB_TMPDIR}/lib/python*/site-packages):${PYTHONPATH}
+    echo "PATH=${PATH}"
+    echo "PYTHONPATH=${PYTHONPAATH}"
     eb_install_out=${TMPDIR}/eb_install.out
     ok_msg="Latest EasyBuild release installed, let's go!"
     fail_msg="Installing latest EasyBuild release failed, that's not good... (output: ${eb_install_out})"
+    which eb
+    ${EB} --version
     ${EB} --install-latest-eb-release 2>&1 | tee ${eb_install_out}
+    ec=$?
+    echo "###############################"
+    cat ${eb_install_out}
+    echo "###############################"
+    cat $(${EB} --last-log)
+    echo "###############################"
     check_exit_code $? "${ok_msg}" "${fail_msg}"
 
     # maybe the module obtained with --install-latest-eb-release is exactly the EasyBuild version we wanted?
@@ -83,6 +93,8 @@ else
         else
             eb_ec=EasyBuild-${EB_VERSION}.eb
             echo_yellow ">> Still no module for EasyBuild v${EB_VERSION}, trying with easyconfig ${eb_ec}..."
+            which eb
+            ${EB} --version
             ${EB} --search ${eb_ec} | grep ${eb_ec} > /dev/null
             if [[ $? -eq 0 ]]; then
                 echo "Easyconfig ${eb_ec} found for EasyBuild v${EB_VERSION}, so installing it..."
